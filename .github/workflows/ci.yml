@@ -41,3 +41,23 @@ jobs:
           node-version: 22
       - run: npm ci --ignore-scripts
       - run: npm run build
+
+  windows-diagnostico:
+    name: Diagnóstico TPM (Windows real)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@39008827e6b4319a349e9a42dfc90579dd25f1ca # stable
+      - run: cargo test -p nexus-diagnostico --locked
+      - run: cargo build -p nexus-diagnostico --release --locked
+      # Ejecución real en la máquina virtual de GitHub (el veredicto depende de su hardware virtual).
+      - run: .\target\release\nexus-diagnostico.exe --salida informe-runner.json
+      - uses: actions/upload-artifact@65c4c4a1ddee5b72f698fdd19549f0f0fb45cf08 # v4.6.0
+        with:
+          name: nexus-diagnostico-windows
+          path: |
+            target/release/nexus-diagnostico.exe
+            informe-runner.json
+          retention-days: 30

@@ -110,7 +110,8 @@ Situación declarada por el fundador: trabaja solo, sin equipo ni presupuesto po
 | Sitio de presentación e identidad visual | Hecho (falta registrar el dominio) |
 | Prototipo `nexus-envelope` con pruebas, vectores oficiales y fuzzing | Hecho (falta la revisión externa) |
 | Integración continua gratuita (GitHub Actions) | Configurada |
-| Siguientes prototipos pequeños: herramienta de diagnóstico TPM, parser de CIPHER, verificador de TRUST | Por hacer |
+| Herramienta de diagnóstico TPM ([`crates/nexus-diagnostico`](../crates/nexus-diagnostico/)) | Hecha; falta probarla en equipos Windows físicos y firmar el `.exe` |
+| Siguientes prototipos pequeños: parser de CIPHER, verificador de TRUST | Por hacer |
 
 **Lo que NO se debe hacer solo**
 - Usar el sistema con datos reales de clientes antes de una revisión criptográfica y un pentest externos.

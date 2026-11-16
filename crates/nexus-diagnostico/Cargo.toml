@@ -1,0 +1,15 @@
+[package]
+name = "nexus-diagnostico"
+version = "0.1.0"
+description = "Diagnóstico de equipos Windows antes de instalar NEXUS CUBE (TPM 2.0, Windows 11, Secure Boot, BitLocker). Sólo lectura, sin red."
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[[bin]]
+name = "nexus-diagnostico"
+path = "src/main.rs"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
