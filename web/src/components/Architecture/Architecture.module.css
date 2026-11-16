@@ -62,14 +62,6 @@
   cursor: default;
 }
 
-.node {
-  opacity: 0;
-  transition: opacity 0.6s var(--ease-out);
-}
-
-.diagram[data-visible='true'] .node {
-  opacity: 1;
-}
 
 .node circle,
 .coreNode polygon {

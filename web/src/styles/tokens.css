@@ -59,4 +59,6 @@
   --container: 1160px;
   --gutter: clamp(16px, 4vw, 32px);
   --nav-h: 64px;
+
+  color-scheme: dark; /* sitio deliberadamente oscuro */
 }

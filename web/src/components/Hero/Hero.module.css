@@ -1,9 +1,8 @@
 .hero {
   position: relative;
-  min-height: min(100svh, 940px);
   display: grid;
   align-items: center;
-  padding-block: calc(var(--nav-h) + 32px) 64px;
+  padding-block: calc(var(--nav-h) + env(safe-area-inset-top, 0px) + clamp(32px, 7vw, 96px)) clamp(48px, 8vw, 112px);
   overflow: hidden;
 }
 
@@ -107,8 +106,7 @@
 /* Tablet y móvil: el cubo encabeza, el texto se centra */
 @media (max-width: 959px) {
   .hero {
-    min-height: auto;
-    padding-top: calc(var(--nav-h) + 8px);
+    padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px) + 8px);
   }
   .layout {
     grid-template-columns: 1fr;

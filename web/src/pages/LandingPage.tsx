@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { parseRoute } from '../app/useHashRoute';
 import { Access } from '../components/Access/Access';
 import { Architecture } from '../components/Architecture/Architecture';
 import { CipherFab } from '../components/CipherFab/CipherFab';
@@ -12,7 +13,7 @@ export function LandingPage() {
   // Al volver desde otra página con un ancla (#seguridad…), desplazarse a ella.
   useEffect(() => {
     const id = window.location.hash.slice(1);
-    if (id && !id.startsWith('/')) {
+    if (id && parseRoute(window.location.hash) === 'landing') {
       requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView());
     }
   }, []);

@@ -67,7 +67,7 @@ export function CipherSection() {
           </Reveal>
 
           <Reveal delay={240}>
-            <ButtonLink href="#/cipher-ai" arrow>Abrir demostración</ButtonLink>
+            <ButtonLink href="#demo-cipher-ai" arrow>Abrir demostración</ButtonLink>
           </Reveal>
         </div>
 

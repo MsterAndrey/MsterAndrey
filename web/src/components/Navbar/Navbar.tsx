@@ -8,7 +8,7 @@ export const NAV_LINKS = [
   { href: '#tecnologia', label: 'Tecnología' },
   { href: '#seguridad', label: 'Seguridad' },
   { href: '#cipher-ai', label: 'CIPHER AI' },
-  { href: '#/marca', label: 'Documentación' },
+  { href: '#marca', label: 'Documentación' },
 ];
 
 export function Navbar() {

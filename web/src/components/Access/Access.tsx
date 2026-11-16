@@ -42,6 +42,9 @@ export function Access() {
             <Icon name="mail" size={18} />
             Solicitar acceso por correo
           </ButtonLink>
+          <p className={styles.address}>
+            Correo para solicitudes: <span className={styles.email}>{ACCESS_EMAIL}</span>
+          </p>
           <p className={styles.warning}>
             <Icon name="info" size={16} />
             NEXUS CUBE nunca envía instaladores adjuntos ni enlaces de descarga sin verificación previa. Si recibes uno,

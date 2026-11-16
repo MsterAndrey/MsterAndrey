@@ -55,7 +55,6 @@ export function ArchitectureDiagram({ active, onActivate, visible }: Props) {
           key={s.id}
           className={styles.node}
           data-active={active === s.id}
-          style={{ transitionDelay: visible ? `${350 + s.k * 90}ms` : '0ms' }}
           onMouseEnter={() => onActivate(s.id)}
           onMouseLeave={() => onActivate(null)}
         >

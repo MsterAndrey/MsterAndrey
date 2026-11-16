@@ -13,7 +13,7 @@ export function CipherFab() {
   }, []);
 
   return (
-    <a href="#/cipher-ai" className={styles.fab} data-show={show} tabIndex={show ? 0 : -1} aria-hidden={!show} aria-label="Abrir la demostración de CIPHER AI">
+    <a href="#demo-cipher-ai" className={styles.fab} data-show={show} tabIndex={show ? 0 : -1} aria-hidden={!show} aria-label="Abrir la demostración de CIPHER AI">
       <CipherCore size={30} animated={show} />
       <span className={styles.label}>CIPHER AI</span>
     </a>

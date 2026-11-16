@@ -36,8 +36,8 @@ Guía paso a paso para Windows. No necesitas saber programar para los pasos 1 a 
    ```
 3. Abre en el navegador: **http://localhost:5173**
    - Página principal: `http://localhost:5173/`
-   - Demo de CIPHER AI: `http://localhost:5173/#/cipher-ai`
-   - Sistema de marca y logotipos: `http://localhost:5173/#/marca`
+   - Demo de CIPHER AI: `http://localhost:5173/#demo-cipher-ai`
+   - Sistema de marca y logotipos: `http://localhost:5173/#marca`
 4. Para detenerla, vuelve a PowerShell y pulsa `Ctrl + C`.
 
 ---

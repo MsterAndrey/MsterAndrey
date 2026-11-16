@@ -66,6 +66,17 @@
   border-top: 1px solid var(--line);
 }
 
+.address {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+
+.email {
+  font-family: var(--font-mono);
+  color: var(--text-1);
+  user-select: all;
+}
+
 .warning {
   display: flex;
   gap: 10px;

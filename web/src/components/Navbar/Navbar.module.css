@@ -2,7 +2,8 @@
   position: fixed;
   inset: 0 0 auto;
   z-index: 50;
-  height: var(--nav-h);
+  height: calc(var(--nav-h) + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
   border-bottom: 1px solid transparent;
   transition:
     background-color var(--dur-med) ease,
@@ -80,7 +81,7 @@
 
 .mobile {
   position: fixed;
-  inset: var(--nav-h) 0 0;
+  inset: calc(var(--nav-h) + env(safe-area-inset-top, 0px)) 0 0;
   background: rgba(8, 13, 26, 0.97);
   border-top: 1px solid var(--line);
   animation: menu-in var(--dur-med) var(--ease-out);

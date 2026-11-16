@@ -17,7 +17,7 @@ npm run preview    # sirve dist/ en http://localhost:4173
 npm run brand      # regenera los logotipos SVG en public/brand/
 ```
 
-Rutas: `#/` (página principal), `#/cipher-ai` (demostración de la IA), `#/marca` (sistema de marca y descargas).
+Rutas (anclas simples, compatibles con cualquier alojamiento): página principal, `#demo-cipher-ai` (demostración de la IA) y `#marca` (sistema de marca y descargas).
 
 ## Estructura
 

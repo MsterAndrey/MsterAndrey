@@ -14,13 +14,13 @@ const COLS = [
     title: 'CIPHER AI',
     links: [
       { href: '#cipher-ai', label: 'Visión general' },
-      { href: '#/cipher-ai', label: 'Demostración' },
+      { href: '#demo-cipher-ai', label: 'Demostración' },
     ],
   },
   {
     title: 'Recursos',
     links: [
-      { href: '#/marca', label: 'Sistema de marca' },
+      { href: '#marca', label: 'Sistema de marca' },
       { href: '#acceso', label: 'Solicitar acceso' },
     ],
   },
