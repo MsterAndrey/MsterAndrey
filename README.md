@@ -17,6 +17,8 @@ NEXUS CUBE es una propuesta de **infraestructura de seguridad empresarial**: ide
 
 **El único código del producto es el prototipo `nexus-envelope`, que no está auditado. No hay auditorías externas ni certificaciones.** Todo lo descrito es diseño propuesto y debe ser revisado por especialistas independientes antes de implementarse. Cualquier afirmación de este repositorio que suene a capacidad existente es un error y debe reportarse.
 
+> **¿Quieres probarlo en tu computador?** Sigue la guía [INSTALAR.md](INSTALAR.md).
+
 ## Índice de documentación
 
 | # | Documento | Contenido |
