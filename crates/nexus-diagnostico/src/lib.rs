@@ -11,4 +11,5 @@
 pub mod collect;
 pub mod evaluate;
 pub mod facts;
+pub mod html;
 pub mod report;

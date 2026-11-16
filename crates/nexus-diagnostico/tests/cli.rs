@@ -24,6 +24,7 @@ fn ejemplo_firma_de_abogados_y_consolidado() {
             .args([
                 "--desde-json",
                 &format!("{fixtures}/{name}.json"),
+                "--sin-abrir",
                 "--salida",
                 dir.join(format!("{name}.json")).to_str().unwrap(),
             ])

@@ -53,11 +53,14 @@ jobs:
       - run: cargo test -p nexus-diagnostico --locked
       - run: cargo build -p nexus-diagnostico --release --locked
       # Ejecución real en la máquina virtual de GitHub (el veredicto depende de su hardware virtual).
-      - run: .\target\release\nexus-diagnostico.exe --salida informe-runner.json
+      # El manifiesto debe pedir permisos de administrador al abrirse con doble clic.
+      - run: if (-not (Select-String -Path .\target\release\nexus-diagnostico.exe -Pattern "requireAdministrator" -SimpleMatch -Quiet)) { Write-Error "falta el manifiesto UAC"; exit 1 }
+      - run: .\target\release\nexus-diagnostico.exe --sin-abrir --salida informe-runner.json
       - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
         with:
           name: nexus-diagnostico-windows
           path: |
             target/release/nexus-diagnostico.exe
             informe-runner.json
+            informe-runner.html
           retention-days: 30

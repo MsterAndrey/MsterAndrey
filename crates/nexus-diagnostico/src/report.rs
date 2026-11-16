@@ -29,6 +29,10 @@ impl Report {
             f.hostname.clone().unwrap_or_else(|| "desconocido".into())
         };
         let modelo = match (&f.manufacturer, &f.model) {
+            // Evita «HP HP ProDesk» cuando el modelo ya empieza por el fabricante.
+            (Some(a), Some(b)) if b.to_lowercase().starts_with(&a.to_lowercase()) => {
+                Some(b.clone())
+            }
             (Some(a), Some(b)) => Some(format!("{a} {b}")),
             (a, b) => a.clone().or_else(|| b.clone()),
         };

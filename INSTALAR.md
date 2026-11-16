@@ -50,16 +50,13 @@ Guía paso a paso para Windows. No necesitas saber programar para los pasos 1 a 
 3. Abajo, en **Artifacts**, descarga **nexus-diagnostico-windows** y descomprímelo.
 
 **Ejecutarla:**
-1. Busca «PowerShell» en el menú Inicio → clic derecho → **Ejecutar como administrador**.
-2. Ve a la carpeta donde lo descomprimiste y ejecuta:
-   ```powershell
-   .\nexus-diagnostico.exe
-   ```
-3. Verás el veredicto (APTO, APTO CON ACCIONES, NO APTO o INCOMPLETO) y se guardará un informe `.json` en esa carpeta.
+1. Haz **doble clic** en `nexus-diagnostico.exe`.
+2. Windows te pedirá permiso de administrador: acepta (es necesario para leer el TPM, Secure Boot y BitLocker).
+3. Se abrirá en tu navegador el **informe visual** con el veredicto (APTO, APTO CON ACCIONES, NO APTO o INCOMPLETO) y qué hacer en cada punto. El informe queda guardado en la misma carpeta (`.html` y `.json`).
 
 Windows puede mostrar una advertencia de SmartScreen porque el programa **todavía no está firmado** digitalmente. Es normal en esta fase: sólo ejecútalo si lo descargaste tú mismo desde la pestaña Actions de tu repositorio.
 
-Envíame el texto que muestre: sería la **primera prueba en un equipo físico** y la registraría en los resultados.
+Envíame una captura del informe o el texto de la ventana: sería la **primera prueba en un equipo físico** y la registraría en los resultados.
 
 ---
 

@@ -23,11 +23,18 @@ Veredictos: **APTO**, **APTO CON ACCIONES**, **NO APTO** o **INCOMPLETO** (falta
 
 ## Uso en Windows
 
-En PowerShell **como administrador**:
+**Doble clic** sobre `nexus-diagnostico.exe`. Windows pide permiso de administrador (el programa lo declara
+en su manifiesto), analiza el equipo y abre en el navegador un **informe visual** con el veredicto, cada
+comprobación y qué hacer. También guarda junto al programa:
+
+- `nexus-diagnostico-<EQUIPO>.html`: el informe visual (un solo archivo, sin scripts ni conexiones; se puede imprimir).
+- `nexus-diagnostico-<EQUIPO>.json`: los datos para consolidar varios equipos.
+
+Desde PowerShell (como administrador) también se puede usar con opciones:
 
 ```powershell
-.\nexus-diagnostico.exe                 # muestra el resultado y guarda nexus-diagnostico-<EQUIPO>.json
 .\nexus-diagnostico.exe --anonimo       # sin nombre ni modelo del equipo
+.\nexus-diagnostico.exe --sin-abrir     # no abre el navegador
 ```
 
 Para una empresa con muchos equipos: reunir los `.json` en una carpeta y ejecutar
