@@ -24,6 +24,8 @@ pub enum Error {
     InvalidName,
     /// Fallo del generador aleatorio del sistema.
     Rng,
+    /// Fallo del almacén de claves de la plataforma (p. ej. TPM no disponible).
+    KeyStore(String),
 }
 
 impl fmt::Display for Error {
@@ -50,6 +52,7 @@ impl fmt::Display for Error {
             }
             Error::InvalidName => f.write_str("nombre de archivo no permitido"),
             Error::Rng => f.write_str("fallo del generador aleatorio del sistema"),
+            Error::KeyStore(m) => write!(f, "almacén de claves: {m}"),
         }
     }
 }

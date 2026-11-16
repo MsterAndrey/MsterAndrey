@@ -67,6 +67,8 @@ jobs:
           persist-credentials: false
       - uses: dtolnay/rust-toolchain@39008827e6b4319a349e9a42dfc90579dd25f1ca # stable
       - run: cargo test -p nexus-diagnostico --locked
+      - run: cargo clippy -p nexus-tpm --all-targets --locked -- -D warnings
+      - run: cargo test -p nexus-tpm --locked
       - run: cargo build -p nexus-diagnostico --release --locked
       # Ejecución real en la máquina virtual de GitHub (el veredicto depende de su hardware virtual).
       # El manifiesto debe pedir permisos de administrador al abrirse con doble clic.
