@@ -1,0 +1,16 @@
+[package]
+name = "nexus-vault-local"
+version = "0.1.0"
+description = "Almacén local cifrado de NEXUS CUBE Desktop: carpetas por cliente/caso, versiones inmutables, recuperación y registro encadenado. Prototipo, sin auditar."
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+nexus-envelope = { path = "../nexus-envelope" }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+getrandom = "0.2"
+zeroize = "1.8"
+hex = "0.4"
