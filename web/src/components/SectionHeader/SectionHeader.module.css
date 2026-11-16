@@ -1,0 +1,42 @@
+.header {
+  display: grid;
+  gap: var(--sp-4);
+  max-width: 720px;
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+
+.center {
+  margin-inline: auto;
+  text-align: center;
+  justify-items: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--nc-electric);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+.title {
+  font-size: var(--fs-2xl);
+  color: var(--text-1);
+}
+
+.lead {
+  font-size: var(--fs-lg);
+  color: var(--text-2);
+  line-height: 1.65;
+}

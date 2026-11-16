@@ -1,0 +1,82 @@
+.btn {
+  --btn-h: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  height: var(--btn-h);
+  padding: 0 20px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  font-size: var(--fs-sm);
+  font-weight: 550;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    color var(--dur-fast) ease,
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.primary {
+  background: var(--nc-blue);
+  color: #fff;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 8px 24px -12px rgba(37, 99, 235, 0.8);
+}
+
+.primary:hover {
+  background: #2f6ff0;
+}
+
+.secondary {
+  background: rgba(148, 163, 184, 0.06);
+  border-color: var(--line-strong);
+  color: var(--text-1);
+}
+
+.secondary:hover {
+  border-color: rgba(56, 189, 248, 0.5);
+  background: rgba(56, 189, 248, 0.06);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--text-2);
+  padding: 0 12px;
+}
+
+.ghost:hover {
+  color: var(--text-1);
+}
+
+.sm {
+  --btn-h: 36px;
+  padding: 0 14px;
+}
+
+.arrow {
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.btn:hover .arrow {
+  transform: translateX(3px);
+}
+
+.btn:disabled,
+.btn[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn,
+  .arrow {
+    transition: none;
+  }
+}

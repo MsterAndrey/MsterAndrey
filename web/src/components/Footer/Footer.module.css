@@ -1,0 +1,87 @@
+.footer {
+  border-top: 1px solid var(--line);
+  background: var(--bg-1);
+  padding-top: clamp(48px, 7vw, 80px);
+}
+
+.top {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr);
+  gap: var(--sp-7);
+}
+
+.brand {
+  display: grid;
+  justify-items: start;
+  align-content: start;
+  gap: var(--sp-3);
+}
+
+.descriptor {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+
+.slogan {
+  margin-top: var(--sp-2);
+  font-size: var(--fs-sm);
+  font-style: italic;
+  color: var(--text-2);
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-5);
+}
+
+.colTitle {
+  margin-bottom: var(--sp-3);
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-1);
+}
+
+.cols ul {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.cols a {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  transition: color var(--dur-fast);
+}
+
+.cols a:hover {
+  color: var(--text-1);
+}
+
+.bottom {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-top: clamp(40px, 6vw, 64px);
+  padding-block: var(--sp-5);
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+
+@media (max-width: 759px) {
+  .top {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

@@ -1,0 +1,241 @@
+.stage {
+  --s: clamp(150px, 22vw, 260px); /* arista del cubo */
+  --h: calc(var(--s) / 2);
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 1 / 1;
+  isolation: isolate;
+  contain: layout paint;
+}
+
+/* Resplandor ambiental detrás del cubo */
+.halo {
+  position: absolute;
+  width: calc(var(--s) * 2.4);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(37, 99, 235, 0.22) 0%,
+    rgba(124, 58, 237, 0.08) 38%,
+    transparent 66%
+  );
+  z-index: -1;
+}
+
+/* Base: dos elipses finas que anclan el cubo en el espacio */
+.platform {
+  position: absolute;
+  top: calc(50% + var(--s) * 0.78);
+  width: calc(var(--s) * 1.8);
+  height: calc(var(--s) * 0.36);
+  translate: 0 -50%;
+  display: grid;
+  place-items: center;
+  z-index: -1;
+}
+
+.platform span {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.2), transparent 70%);
+}
+
+.platform span + span {
+  inset: 22% 18%;
+  border-color: rgba(167, 139, 250, 0.25);
+  background: none;
+}
+
+.scene {
+  width: var(--s);
+  height: var(--s);
+  perspective: 1200px;
+}
+
+.tilt {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateX(-24deg);
+}
+
+.spin {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateY(38deg);
+  animation: spin 110s linear infinite;
+  will-change: transform;
+}
+
+@keyframes spin {
+  from { transform: rotateY(38deg); }
+  to { transform: rotateY(-322deg); }
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d; /* permite ocultar la N cuando la cara mira hacia atrás */
+  color: rgba(56, 189, 248, 0.5);
+  border: 1px solid rgba(56, 189, 248, 0.42);
+  background: linear-gradient(
+    150deg,
+    rgba(37, 99, 235, 0.16) 0%,
+    rgba(15, 23, 42, 0.5) 52%,
+    rgba(124, 58, 237, 0.14) 100%
+  );
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.025),
+    inset 0 0 56px rgba(37, 99, 235, 0.16);
+}
+
+.front  { transform: translateZ(var(--h)); }
+.back   { transform: rotateY(180deg) translateZ(var(--h)); }
+.right  { transform: rotateY(90deg) translateZ(var(--h)); }
+.left   { transform: rotateY(-90deg) translateZ(var(--h)); }
+.top    { transform: rotateX(90deg) translateZ(var(--h)); }
+.bottom { transform: rotateX(-90deg) translateZ(var(--h)); }
+
+.top {
+  background: linear-gradient(150deg, rgba(56, 189, 248, 0.2), rgba(15, 23, 42, 0.45) 70%);
+}
+
+.circuit {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.75;
+}
+
+.mark {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 34%;
+  height: 34%;
+  opacity: 0.85;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Núcleo interior: segunda capa de protección */
+.inner {
+  position: absolute;
+  inset: 30%;
+  transform-style: preserve-3d;
+}
+
+.innerSpin {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: inner-spin 56s linear infinite;
+}
+
+@keyframes inner-spin {
+  from { transform: rotateX(0deg) rotateY(0deg); }
+  to { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+.innerFace {
+  --ih: calc(var(--s) * 0.2);
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(167, 139, 250, 0.55);
+  background: rgba(124, 58, 237, 0.1);
+}
+
+.i_front  { transform: translateZ(var(--ih)); }
+.i_back   { transform: rotateY(180deg) translateZ(var(--ih)); }
+.i_right  { transform: rotateY(90deg) translateZ(var(--ih)); }
+.i_left   { transform: rotateY(-90deg) translateZ(var(--ih)); }
+.i_top    { transform: rotateX(90deg) translateZ(var(--ih)); }
+.i_bottom { transform: rotateX(-90deg) translateZ(var(--ih)); }
+
+/* Iluminación interna: luz que atraviesa el vidrio */
+.core {
+  position: absolute;
+  width: calc(var(--s) * 0.9);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(186, 230, 253, 0.55) 0%,
+    rgba(56, 189, 248, 0.28) 14%,
+    rgba(37, 99, 235, 0.12) 34%,
+    transparent 62%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: breathe 7s var(--ease-in-out) infinite;
+}
+
+.core span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e0f2fe;
+  box-shadow: 0 0 12px 3px rgba(56, 189, 248, 0.75);
+}
+
+@keyframes breathe {
+  0%, 100% { opacity: 0.7; transform: scale(0.96); }
+  50% { opacity: 1; transform: scale(1.04); }
+}
+
+/* Partículas ambientales, muy discretas */
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: #93c5fd;
+  opacity: 0;
+  animation: drift var(--dur) ease-in-out var(--delay) infinite;
+}
+
+@keyframes drift {
+  0% { opacity: 0; transform: translate3d(0, 10px, 0); }
+  35%, 65% { opacity: var(--o); }
+  100% { opacity: 0; transform: translate3d(0, -30px, 0); }
+}
+
+/* Sin coste fuera de pantalla */
+.stage[data-paused='true'] .spin,
+.stage[data-paused='true'] .innerSpin,
+.stage[data-paused='true'] .core,
+.stage[data-paused='true'] .particle {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spin,
+  .innerSpin,
+  .core {
+    animation: none;
+  }
+  .innerSpin {
+    transform: rotateX(30deg) rotateY(40deg);
+  }
+  .particles {
+    display: none;
+  }
+}

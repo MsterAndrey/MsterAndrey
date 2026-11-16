@@ -44,6 +44,10 @@ NEXUS CUBE es una propuesta de **infraestructura de seguridad empresarial**: ide
 | 20 | [Marco normativo Colombia](docs/20-marco-colombia.md) | Ley 1581, SIC, SFC, delitos informáticos (requiere abogado) |
 | — | [ADR](docs/adr/) | Registros de decisiones de arquitectura |
 
+## Sitio web
+
+La carpeta [`web/`](web/) contiene el sitio de presentación de NEXUS CUBE, el sistema de marca (logotipos SVG) y una demostración de la interfaz de CIPHER AI con datos ficticios. Es independiente del sistema. Instrucciones en [web/README.md](web/README.md).
+
 ## Reglas innegociables
 
 Las reglas del proyecto (sin criptografía propia, sin claves maestras universales, sin administrador omnipotente, sin biometría como clave, IA sin autoautorización, etc.) están recogidas en el [resumen ejecutivo](docs/00-resumen-ejecutivo.md#reglas-innegociables) y se trazan a controles concretos en el [modelo de amenazas](docs/04-modelo-amenazas.md).

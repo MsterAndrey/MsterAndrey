@@ -1,0 +1,27 @@
+{
+  "name": "nexus-cube-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Sitio de presentación de NEXUS CUBE y CIPHER AI (estático, sin conexión con el producto).",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "brand": "node scripts/build-brand.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "5.2.5",
+    "@fontsource-variable/jetbrains-mono": "5.2.5",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.1.6",
+    "@types/react-dom": "19.1.5",
+    "@vitejs/plugin-react": "4.5.0",
+    "typescript": "5.8.3",
+    "vite": "6.3.5"
+  }
+}

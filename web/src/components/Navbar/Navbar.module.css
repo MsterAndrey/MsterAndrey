@@ -1,0 +1,136 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  height: var(--nav-h);
+  border-bottom: 1px solid transparent;
+  transition:
+    background-color var(--dur-med) ease,
+    border-color var(--dur-med) ease;
+}
+
+.header[data-scrolled='true'] {
+  background: rgba(8, 13, 26, 0.72);
+  border-bottom-color: var(--line);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+
+.nav {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--sp-6);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.link {
+  display: block;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  transition: color var(--dur-fast), background-color var(--dur-fast);
+}
+
+.link:hover {
+  color: var(--text-1);
+  background: rgba(148, 163, 184, 0.06);
+}
+
+.access {
+  padding: 7px 16px;
+  border-radius: 9px;
+  border: 1px solid var(--line-strong);
+  font-size: var(--fs-sm);
+  font-weight: 550;
+  color: var(--text-1);
+  transition: border-color var(--dur-fast), background-color var(--dur-fast);
+}
+
+.access:hover {
+  border-color: rgba(56, 189, 248, 0.55);
+  background: rgba(56, 189, 248, 0.06);
+}
+
+.toggle {
+  display: none;
+  margin-left: auto;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-1);
+}
+
+.mobile {
+  position: fixed;
+  inset: var(--nav-h) 0 0;
+  background: rgba(8, 13, 26, 0.97);
+  border-top: 1px solid var(--line);
+  animation: menu-in var(--dur-med) var(--ease-out);
+}
+
+.mobile ul {
+  display: grid;
+  padding-top: var(--sp-5);
+}
+
+.mobile a {
+  display: block;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 1.125rem;
+  color: var(--text-1);
+}
+
+.mobile .mobileAccess {
+  margin-top: var(--sp-5);
+  border: 0;
+  border-radius: 10px;
+  background: var(--nc-blue);
+  text-align: center;
+  font-size: var(--fs-md);
+  font-weight: 550;
+}
+
+@keyframes menu-in {
+  from { opacity: 0; transform: translateY(-6px); }
+}
+
+@media (max-width: 959px) {
+  .links,
+  .access {
+    display: none;
+  }
+  .toggle {
+    display: grid;
+  }
+}
+
+@media (min-width: 960px) {
+  .mobile {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile {
+    animation: none;
+  }
+}
