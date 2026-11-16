@@ -9,9 +9,13 @@ import { Folders } from './screens/Folders';
 import { Recovery } from './screens/Recovery';
 import { Activity } from './screens/Activity';
 import { Device } from './screens/Device';
+import { Admin } from './screens/admin/Admin';
+import { adminMock, adminUnavailable } from './service/adminMock';
 
 // Dentro de la aplicación de Windows se usa el motor real; en el navegador, la demostración.
 const service: NexusService = isDesktopApp ? realService : mockService;
+// La consola de administración necesita NEXUS Server (aún no existe): en la app instalable se explica; en la demo, datos ficticios.
+const adminService = isDesktopApp ? adminUnavailable : adminMock;
 
 const viewFromHash = (): View => {
   const h = window.location.hash.slice(1);
@@ -97,6 +101,7 @@ export function App() {
           )}
           {view === 'actividad' && <Activity service={service} activity={activity} />}
           {view === 'equipo' && <Device device={device} />}
+          {view === 'administracion' && <Admin service={adminService} />}
         </>
       )}
     </Shell>

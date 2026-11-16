@@ -67,10 +67,15 @@ Envíame una captura del informe o el texto de la ventana: sería la **primera p
 **Requisitos:** Windows 11, TPM 2.0 activo y Windows Hello configurado (huella, rostro o al menos un PIN, en Configuración › Cuentas › Opciones de inicio de sesión).
 
 1. En **Actions**, abre la ejecución más reciente de **CI** con marca verde ✔.
-2. En **Artifacts**, descarga **nexus-cube-desktop-windows** y descomprímelo.
-3. Haz doble clic en `nexus-cube-desktop.exe` (no necesita instalación). Si aparece «Windows protegió su PC»: **Más información → Ejecutar de todas formas**; ocurre porque aún no está firmado.
-4. Pulsa **Desbloquear con Windows Hello** y confirma con tu huella, rostro o PIN.
-5. Prueba: **Carpetas protegidas → Nueva carpeta**, luego **Añadir archivos** con archivos de prueba. Después, en **Recuperación**, elige la carpeta y un momento, y confirma con Windows Hello.
+2. En **Artifacts**, descarga **nexus-cube-instalador-windows** y descomprímelo: dentro está `NEXUS CUBE_0.1.0_x64-setup.exe`.
+3. Haz doble clic en el instalador. Si aparece «Windows protegió su PC»: **Más información → Ejecutar de todas formas** (aún no está firmado). Windows pedirá permiso de administrador **para instalar** (escribe en *Archivos de programa*).
+4. El instalador:
+   - instala NEXUS CUBE en `C:\Program Files\NEXUS CUBE` y crea el acceso en el menú Inicio;
+   - si falta **WebView2** (el motor de las pantallas; Windows 11 ya lo trae), lo descarga de Microsoft e instala;
+   - al terminar, marca **Ejecutar NEXUS CUBE** para abrirla.
+   La aplicación se abre **sin permisos de administrador** (no los necesita; es más seguro). Para desinstalarla: *Configuración › Aplicaciones*.
+5. Pulsa **Desbloquear con Windows Hello** y confirma con tu huella, rostro o PIN.
+6. Prueba: **Carpetas protegidas → Nueva carpeta**, luego **Añadir archivos** con archivos de prueba. Después, en **Recuperación**, elige la carpeta y un momento, y confirma con Windows Hello.
 
 Dónde queda cada cosa:
 - Los datos cifrados y las llaves (protegidas por el TPM): `%LOCALAPPDATA%\co.com.nexuscube.desktop\`

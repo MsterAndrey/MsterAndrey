@@ -113,7 +113,9 @@ Situación declarada por el fundador: trabaja solo, sin equipo ni presupuesto po
 | Herramienta de diagnóstico TPM ([`crates/nexus-diagnostico`](../crates/nexus-diagnostico/)) | Hecha; falta probarla en equipos Windows físicos y firmar el `.exe` |
 | Prototipo de interfaz de la aplicación de escritorio ([`desktop/`](../desktop/)) con contrato de servicio tipado | Hecho (datos ficticios) |
 | Motor del almacén local ([`crates/nexus-vault-local`](../crates/nexus-vault-local/)) | Hecho (claves de desarrollo; falta TPM) |
-| Almacén de claves con TPM 2.0 y aplicación de Windows (Tauri) conectada al motor | Siguiente |
+| Almacén de claves con TPM 2.0 ([`crates/nexus-tpm`](../crates/nexus-tpm/)) y aplicación de Windows con instalador | Hecho; falta la primera prueba en un equipo real |
+| Prototipo de la consola de administración (personas, accesos, aprobaciones M-de-N) | Hecho (datos ficticios; requiere NEXUS Server) |
+| NEXUS Server: identidad de la organización, aprobaciones y sincronización cifrada | Siguiente |
 | Siguientes prototipos pequeños: parser de CIPHER, verificador de TRUST | Por hacer |
 
 **Lo que NO se debe hacer solo**

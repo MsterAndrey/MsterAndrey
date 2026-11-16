@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 import { Icon, type IconName } from './Icon';
 import styles from './Shell.module.css';
 
-export type View = 'inicio' | 'carpetas' | 'recuperacion' | 'actividad' | 'equipo';
+export type View = 'inicio' | 'carpetas' | 'recuperacion' | 'actividad' | 'equipo' | 'administracion';
 
 export const VIEWS: Array<{ id: View; label: string; icon: IconName }> = [
   { id: 'inicio', label: 'Inicio', icon: 'home' },
@@ -10,6 +10,7 @@ export const VIEWS: Array<{ id: View; label: string; icon: IconName }> = [
   { id: 'recuperacion', label: 'Recuperación', icon: 'restore' },
   { id: 'actividad', label: 'Actividad', icon: 'activity' },
   { id: 'equipo', label: 'Este equipo', icon: 'device' },
+  { id: 'administracion', label: 'Administración', icon: 'users' },
 ];
 
 type Props = {

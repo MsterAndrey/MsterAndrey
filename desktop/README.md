@@ -14,6 +14,27 @@ Prototipo navegable de la aplicación de escritorio ([docs/17](../docs/17-aplica
 | Actividad | Registro de NEXUS TRUST con recibos y verificación de integridad |
 | Este equipo | TPM 2.0, Windows Hello, BitLocker, arranque seguro, trabajo sin conexión |
 
+## Consola de administración (sección «Administración»)
+
+Gestión de las personas y los accesos de la organización. **Requiere NEXUS Server, que aún no existe**: en el
+navegador se muestra con datos ficticios; en la aplicación instalable explica que llegará con el servidor.
+
+| Pestaña | Qué permite | Regla de seguridad |
+|---|---|---|
+| Personas | Invitar, suspender, solicitar baja | Suspender es inmediato; la baja necesita 2 custodios |
+| Accesos | Ver quién abre cada carpeta, retirar o solicitar acceso | Retirar es inmediato; dar acceso lo aprueba el socio responsable; se bloquean los conflictos de intereses |
+| Aprobaciones | Aprobar o rechazar solicitudes con Windows Hello | Sólo aprueban las personas autorizadas; nadie aprueba sus propias solicitudes |
+| Equipos | Revocar un equipo perdido o robado | Inmediato; sus claves dejan de servir al reconectarse |
+| Funciones | Administración de identidad, custodio, auditoría | Nadie lo puede todo; administrar no da acceso al contenido (ADR-0007) |
+| Registro | Acciones administrativas | Todo queda registrado |
+
+El contrato está en `src/service/admin.ts`; la simulación, en `src/service/adminMock.ts`.
+
+## Instalador de Windows
+La CI genera `NEXUS CUBE_<versión>_x64-setup.exe` (NSIS): instalación para todo el equipo, acceso en el menú Inicio,
+desinstalador, opción «Ejecutar NEXUS CUBE» al terminar, instala WebView2 si falta y no necesita las librerías de
+Visual C++ (enlazadas estáticamente). La aplicación se ejecuta **sin** permisos de administrador (mínimo privilegio).
+
 ## Arquitectura
 
 - `src/service/types.ts` define el **contrato** entre la interfaz y el servicio local de NEXUS (Rust). La interfaz
