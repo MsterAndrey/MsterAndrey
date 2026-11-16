@@ -14,5 +14,6 @@ Todos los ADR actuales están **Propuestos**: requieren aprobación del fundador
 | [0007](ADR-0007-sin-clave-maestra-ni-admin-universal.md) | Sin clave maestra ni administrador universal | Propuesto |
 | [0008](ADR-0008-recuperacion-asistida-por-ia.md) | Recuperación asistida por IA: la IA guía y no usa las claves | Aceptado |
 | [0009](ADR-0009-local-first-aplicacion-escritorio.md) | Local-first: aplicación instalada en el computador | Propuesto |
-| [0011](ADR-0011-compartimentos-legales-por-cliente-o-caso.md) | Sector legal: un compartimento por cliente o por caso | Aceptado |
 | [0010](ADR-0010-web-independiente-distribucion-controlada.md) | Web independiente y distribución controlada | Propuesto |
+| [0011](ADR-0011-compartimentos-legales-por-cliente-o-caso.md) | Sector legal: un compartimento por cliente o por caso | Aceptado |
+| [0012](ADR-0012-tpm-2-obligatorio.md) | TPM 2.0 obligatorio, sin excepciones | Aceptado |

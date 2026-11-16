@@ -30,6 +30,7 @@
 | R-24 | Comercial | Proceso de distribución estricto ralentiza las ventas | 4 | 3 | Medir el tiempo de alta; automatizar la verificación sin relajar controles | Comercial | Alta > 30 días |
 | R-25 | Regulatorio | Transferencia internacional de datos desde Colombia (servidores, proveedor de IA) | 3 | 4 | Elección de región, contratos, on-premise | Legal | Cliente sectorial con restricciones |
 | R-26 | Reputacional | Marketing con la cifra "99 %" sin evidencia | 3 | 5 | Revisión de toda afirmación pública por seguridad | Fundador | — |
+| R-27 | Comercial | Clientes con equipos sin TPM 2.0 no pueden adoptar NEXUS (ADR-0012) | 3 | 3 | Diagnóstico de equipos antes de la venta; guía para activar fTPM; plan de renovación con el cliente | Comercial | Ventas perdidas o retrasadas por este motivo |
 
 ## Riesgos aceptados explícitamente (propuesta, requiere decisión del fundador)
 

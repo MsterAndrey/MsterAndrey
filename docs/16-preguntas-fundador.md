@@ -27,7 +27,7 @@
 | — | Dominio: `nexuscube.com.co` (el fundador indica que está libre) | Correo de acceso `acceso@nexuscube.com.co` en el sitio. **Registrarlo antes de publicar** (ver §Dominio) |
 | P-D2 | Ratifica que la IA guía la recuperación sin usar llaves | [ADR-0008](adr/ADR-0008-recuperacion-asistida-por-ia.md) aceptado |
 | — | Sector legal: compartimento separado por cliente o por caso | [ADR-0011](adr/ADR-0011-compartimentos-legales-por-cliente-o-caso.md) |
-| P-D1 | **Pendiente.** El fundador pide un ejemplo de lo que implicaría exigir TPM 2.0 | Análisis en [17 §17.4.1](17-aplicacion-escritorio.md#1741-qué-implica-exigir-tpm-20-ejemplo) |
+| P-D1 | Pidió un ejemplo de lo que implicaría exigir TPM 2.0 → **ronda 4: TPM 2.0 obligatorio sin excepciones** | Análisis en [17 §17.4.1](17-aplicacion-escritorio.md#1741-qué-implica-exigir-tpm-20-ejemplo); decisión en [ADR-0012](adr/ADR-0012-tpm-2-obligatorio.md) |
 | P-D4 | Windows primero | Windows 11 como plataforma objetivo; Windows 10 ver §17.4.1 |
 | P-D5 | Ambas opciones, **principalmente gestionado por NEXUS** | NEXUS Server gestionado como modo por defecto; on-premise para el plan Empresarial y el plan Crítico. En ambos casos NEXUS sólo almacena texto cifrado (ver [ADR-0009](adr/ADR-0009-local-first-aplicacion-escritorio.md)) |
 | P-D6 | Sí: si no paga, sólo lectura | [§19.1](19-modelo-negocio.md#191-principios), principio 2 confirmado |
@@ -38,13 +38,13 @@
 - Activar en el registrador el bloqueo de transferencia y la autenticación en dos pasos con llave de seguridad.
 - El dominio del correo y el de la web pueden ser el mismo, pero el portal de distribución debe usar un subdominio o dominio en infraestructura separada (ver [18](18-distribucion-segura.md#184-separación-de-infraestructuras)).
 
-Pendiente: P-D1 (exigir o no TPM 2.0).
+Todas las preguntas de las rondas 1–4 están respondidas. Siguen abiertas las preguntas originales no tratadas (Q5–Q7, Q9–Q21).
 
 ## Preguntas de la ronda 2
 
 | # | Pregunta | Recomendación |
 |---|---|---|
-| P-D1 | ¿Se admiten equipos sin TPM 2.0? | No para datos sensibles; modo degradado señalado para el resto |
+| P-D1 | ¿Se admiten equipos sin TPM 2.0? | No para datos sensibles; modo degradado señalado para el resto → **decidido: TPM 2.0 obligatorio sin excepciones** (ronda 4) |
 | P-D2 | ¿Aceptas la alternativa del ADR-0008 (la IA guía, pero no usa las claves)? | Sí |
 | P-D3 | ¿Tamaño de las primeras empresas en Colombia? (10–100, 100–1 000, 1 000+) | Medianas (100–1 000): pueden pagar y tienen procesos, sin ciclos de venta de un año |
 | P-D4 | ¿Sistema operativo inicial? | Windows 10/11 → **decidido: Windows** (ronda 3) |

@@ -64,7 +64,7 @@ Se combinan tres capas, porque ninguna sola basta:
 - La clave del dispositivo se genera dentro del **TPM 2.0** (Windows/Linux) o del **Secure Enclave** (macOS) y no se puede exportar.
 - El usuario la desbloquea con **Windows Hello / Touch ID** o con un PIN: la biometría es local ([ADR-0005](adr/ADR-0005-biometria-solo-local.md)).
 - Cada carpeta protegida tiene su propia clave (Compartment Key), envuelta para cada dispositivo autorizado (HPKE híbrido, `NC-WRAP-2`).
-- Requisito mínimo de hardware: **TPM 2.0** (obligatorio en Windows 11). Los equipos sin TPM funcionan en un modo degradado claramente señalado, o no se admiten (decisión pendiente, P-D1).
+- Requisito de hardware: **TPM 2.0 obligatorio, sin excepciones** ([ADR-0012](adr/ADR-0012-tpm-2-obligatorio.md)). El servidor lo verifica por atestación en la inscripción de cada equipo.
 
 ### 17.4.1 Qué implica exigir TPM 2.0 (ejemplo)
 
@@ -91,9 +91,9 @@ Se combinan tres capas, porque ninguna sola basta:
 - Reposición de equipos antiguos (coste del cliente; puede retrasar o impedir la venta).
 - Las máquinas virtuales necesitan TPM virtual (vTPM), disponible en Hyper-V, VMware y Azure.
 
-**Alternativa intermedia (si se decide no excluir a nadie):** en equipos sin TPM, la clave del dispositivo vive en una **llave FIDO2/PIV externa** (USB). Es igual de no copiable, pero no permite atestación de arranque, añade un coste por llave y el equipo queda señalado como "postura reducida" con menos permisos (p. ej. sin acceso a compartimentos de historias clínicas o expedientes).
+**Alternativa intermedia (descartada por ADR-0012):** en equipos sin TPM, la clave del dispositivo vive en una **llave FIDO2/PIV externa** (USB). Es igual de no copiable, pero no permite atestación de arranque, añade un coste por llave y el equipo queda señalado como "postura reducida" con menos permisos (p. ej. sin acceso a compartimentos de historias clínicas o expedientes).
 
-**Recomendación del equipo:** exigir TPM 2.0 y Windows 11 como norma, con una herramienta de diagnóstico previa a la venta; la alternativa con llave externa sólo como excepción temporal, por un plazo limitado (p. ej. 6 meses) mientras el cliente renueva equipos.
+**Decisión (ronda 4):** TPM 2.0 obligatorio sin excepciones, con una herramienta de diagnóstico previa a la venta. Ver [ADR-0012](adr/ADR-0012-tpm-2-obligatorio.md).
 
 ## 17.5 Funcionamiento sin conexión
 
