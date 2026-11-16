@@ -66,6 +66,35 @@ Se combinan tres capas, porque ninguna sola basta:
 - Cada carpeta protegida tiene su propia clave (Compartment Key), envuelta para cada dispositivo autorizado (HPKE híbrido, `NC-WRAP-2`).
 - Requisito mínimo de hardware: **TPM 2.0** (obligatorio en Windows 11). Los equipos sin TPM funcionan en un modo degradado claramente señalado, o no se admiten (decisión pendiente, P-D1).
 
+### 17.4.1 Qué implica exigir TPM 2.0 (ejemplo)
+
+**Contexto:** Windows 11 exige TPM 2.0 para instalarse, y Microsoft terminó el soporte de Windows 10 el 14 de octubre de 2025 (salvo actualizaciones de seguridad extendidas de pago, ESU) [VERIFICAR condiciones vigentes]. Casi todos los equipos de empresa fabricados desde ~2017–2018 tienen TPM 2.0, a veces como **fTPM** integrado en el procesador (Intel PTT o AMD fTPM), aunque en algunos viene **desactivado en la BIOS/UEFI**.
+
+**Ejemplo hipotético:** una firma de abogados con 150 equipos.
+
+| Grupo | Equipos | Situación | Qué pasa si NEXUS exige TPM 2.0 |
+|---|---|---|---|
+| A | 110 | Windows 11, TPM 2.0 activo | Se instala sin cambios |
+| B | 25 | Windows 10, el procesador tiene fTPM pero está desactivado en la BIOS | Activar fTPM en la BIOS (≈10–15 min por equipo, con soporte de TI) y, preferiblemente, actualizar a Windows 11 |
+| C | 15 | Equipos antiguos sin TPM 2.0 (anteriores a ~2016) | **No pueden usar NEXUS.** Opciones: reemplazarlos, asignarles sólo tareas sin datos sensibles, o (si se aprueba) un modo alternativo con llave FIDO2 externa |
+
+**Ventajas de exigirlo**
+- Las claves del equipo no se pueden copiar: un malware o un ladrón no se las lleva en un archivo.
+- Atestación: el servidor verifica que el equipo arrancó sin manipulaciones antes de entregarle claves.
+- Windows Hello (huella/rostro/PIN) protegido por hardware.
+- Un único modelo de seguridad, más simple de probar y auditar.
+- De todos modos, los equipos sin TPM 2.0 no pueden tener Windows 11, y Windows 10 ya no tiene soporte gratuito: **son un riesgo de seguridad en sí mismos**.
+
+**Costes de exigirlo**
+- Una evaluación previa del parque de equipos en cada cliente (NEXUS puede entregar una herramienta de diagnóstico que lo verifique antes de vender).
+- Trabajo de TI para activar fTPM en la BIOS.
+- Reposición de equipos antiguos (coste del cliente; puede retrasar o impedir la venta).
+- Las máquinas virtuales necesitan TPM virtual (vTPM), disponible en Hyper-V, VMware y Azure.
+
+**Alternativa intermedia (si se decide no excluir a nadie):** en equipos sin TPM, la clave del dispositivo vive en una **llave FIDO2/PIV externa** (USB). Es igual de no copiable, pero no permite atestación de arranque, añade un coste por llave y el equipo queda señalado como "postura reducida" con menos permisos (p. ej. sin acceso a compartimentos de historias clínicas o expedientes).
+
+**Recomendación del equipo:** exigir TPM 2.0 y Windows 11 como norma, con una herramienta de diagnóstico previa a la venta; la alternativa con llave externa sólo como excepción temporal, por un plazo limitado (p. ej. 6 meses) mientras el cliente renueva equipos.
+
 ## 17.5 Funcionamiento sin conexión
 
 - El equipo sigue cifrando y descifrando las carpetas ya autorizadas durante un periodo configurable (p. ej. 7 días) sin contactar al servidor.
@@ -80,7 +109,7 @@ Se combinan tres capas, porque ninguna sola basta:
 
 ## 17.7 Plataformas
 
-Recomendación: empezar por **Windows 10/11**, que es dominante en empresas en Colombia [a validar con los primeros clientes]. Luego macOS y, por último, Linux. Móvil (Android/iOS) en una fase posterior, sólo para aprobaciones y lectura.
+**Decidido (ronda 3): Windows primero.** Plataforma objetivo: Windows 11; Windows 10 sujeto a la decisión P-D1 (§17.4.1). Luego macOS y, por último, Linux. Móvil (Android/iOS) en una fase posterior, sólo para aprobaciones y lectura.
 
 ## 17.8 Nuevas amenazas que introduce este modelo
 

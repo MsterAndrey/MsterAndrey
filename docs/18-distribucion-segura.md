@@ -8,7 +8,7 @@
 |---|---|
 | Independencia total | Sitio **estático** en un proveedor y una cuenta distintos a los de la infraestructura del producto. Sin credenciales compartidas, sin API, sin base de datos, sin inicio de sesión |
 | Sin descargas | No hay ningún binario alojado. El sitio dice explícitamente: "NEXUS nunca envía el software por correo adjunto ni lo publica en esta web" |
-| Contacto | Sólo un correo oficial (enlace `mailto:`). Sin formularios conectados a sistemas internos |
+| Contacto | Sólo un correo oficial (enlace `mailto:`), previsto en `acceso@nexuscube.com.co`. Sin formularios conectados a sistemas internos |
 | Superficie mínima | Sin scripts de terceros ni rastreadores; CSP estricta; HTTPS con HSTS (preload) |
 | Afirmaciones | Sólo las que tengan evidencia (ver regla 13). Prohibido "inhackeable" o "reduce el 99 % de los ataques" hasta poder demostrarlo |
 | Huella de la clave de firma | Se publica la huella de la clave de firma de releases, que también se entrega por un segundo canal |

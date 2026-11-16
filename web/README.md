@@ -80,6 +80,6 @@ Cross-Origin-Opener-Policy: same-origin
 ```
 
 ## Pendiente antes de publicar
-- Sustituir el correo provisional `acceso@nexuscube.example` en `src/app/brand.ts` por el correo oficial, con SPF, DKIM y DMARC configurados.
+- Registrar el dominio `nexuscube.com.co` y crear el buzón `acceso@nexuscube.com.co` (configurado en `src/app/brand.ts`) con SPF, DKIM y DMARC en modo `reject`. No publicar el sitio antes: si otro registra el dominio, recibiría las solicitudes de acceso.
 - Revisión legal de los textos (afirmaciones, privacidad).
 - Validar los logotipos con un diseñador y hacer una búsqueda de marcas registradas antes de registrar el nombre y el símbolo.

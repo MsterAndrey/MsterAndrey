@@ -4,7 +4,7 @@ const base = import.meta.env.BASE_URL;
 export const brand = (file: string) => `${base}brand/${file}`;
 
 /**
- * Correo oficial para solicitudes de acceso.
- * PENDIENTE: reemplazar por el dominio definitivo antes de publicar (ver README).
+ * Correo oficial para solicitudes de acceso (dominio nexuscube.com.co).
+ * IMPORTANTE: registrar el dominio y configurar SPF, DKIM y DMARC antes de publicar el sitio.
  */
-export const ACCESS_EMAIL = 'acceso@nexuscube.example';
+export const ACCESS_EMAIL = 'acceso@nexuscube.com.co';

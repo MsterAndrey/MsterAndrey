@@ -20,7 +20,25 @@
 | P-D3 | Empresas de 100 a 1 000 empleados | Plan **Profesional** como oferta principal del piloto ([19](19-modelo-negocio.md)) |
 | P-D7 | Sectores legal y salud | Requisitos sectoriales en [20 §20.3](20-marco-colombia.md#203-sectores-prioritarios-legal-y-salud); pilotos con firmas de abogados e IPS medianas |
 
-Pendientes de la ronda 2: P-D1 (equipos sin TPM), P-D4 (sistema operativo inicial), P-D5 (servidor gestionado u on-premise), P-D6 (sólo lectura si no se paga).
+## Respuestas recibidas — ronda 3
+
+| # | Respuesta | Cómo se incorporó |
+|---|---|---|
+| — | Dominio: `nexuscube.com.co` (el fundador indica que está libre) | Correo de acceso `acceso@nexuscube.com.co` en el sitio. **Registrarlo antes de publicar** (ver §Dominio) |
+| P-D2 | Ratifica que la IA guía la recuperación sin usar llaves | [ADR-0008](adr/ADR-0008-recuperacion-asistida-por-ia.md) aceptado |
+| — | Sector legal: compartimento separado por cliente o por caso | [ADR-0011](adr/ADR-0011-compartimentos-legales-por-cliente-o-caso.md) |
+| P-D1 | **Pendiente.** El fundador pide un ejemplo de lo que implicaría exigir TPM 2.0 | Análisis en [17 §17.4.1](17-aplicacion-escritorio.md#1741-qué-implica-exigir-tpm-20-ejemplo) |
+| P-D4 | Windows primero | Windows 11 como plataforma objetivo; Windows 10 ver §17.4.1 |
+| P-D5 | Ambas opciones, **principalmente gestionado por NEXUS** | NEXUS Server gestionado como modo por defecto; on-premise para el plan Empresarial y el plan Crítico. En ambos casos NEXUS sólo almacena texto cifrado (ver [ADR-0009](adr/ADR-0009-local-first-aplicacion-escritorio.md)) |
+| P-D6 | Sí: si no paga, sólo lectura | [§19.1](19-modelo-negocio.md#191-principios), principio 2 confirmado |
+
+### Dominio
+- El sitio no puede confirmar la disponibilidad; la indicó el fundador. Registrar `nexuscube.com.co` **antes** de publicar el correo: si otro lo registra, recibiría las solicitudes de acceso.
+- Registrar también variantes defensivas (`nexuscube.co`, `nexuscube.com` si está disponible, `nexus-cube.com.co`) para reducir la suplantación y el phishing.
+- Activar en el registrador el bloqueo de transferencia y la autenticación en dos pasos con llave de seguridad.
+- El dominio del correo y el de la web pueden ser el mismo, pero el portal de distribución debe usar un subdominio o dominio en infraestructura separada (ver [18](18-distribucion-segura.md#184-separación-de-infraestructuras)).
+
+Pendiente: P-D1 (exigir o no TPM 2.0).
 
 ## Preguntas de la ronda 2
 
@@ -29,9 +47,9 @@ Pendientes de la ronda 2: P-D1 (equipos sin TPM), P-D4 (sistema operativo inicia
 | P-D1 | ¿Se admiten equipos sin TPM 2.0? | No para datos sensibles; modo degradado señalado para el resto |
 | P-D2 | ¿Aceptas la alternativa del ADR-0008 (la IA guía, pero no usa las claves)? | Sí |
 | P-D3 | ¿Tamaño de las primeras empresas en Colombia? (10–100, 100–1 000, 1 000+) | Medianas (100–1 000): pueden pagar y tienen procesos, sin ciclos de venta de un año |
-| P-D4 | ¿Sistema operativo inicial? | Windows 10/11 |
-| P-D5 | ¿NEXUS Server gestionado por NEXUS, on-premise, o ambos desde el inicio? | Gestionado primero (con región compatible); on-premise para el plan Empresarial |
-| P-D6 | ¿Aceptas que, si no se paga la licencia, el cliente conserve el acceso de sólo lectura a sus datos? | Sí (ver §19.1) |
+| P-D4 | ¿Sistema operativo inicial? | Windows 10/11 → **decidido: Windows** (ronda 3) |
+| P-D5 | ¿NEXUS Server gestionado por NEXUS, on-premise, o ambos desde el inicio? | Gestionado primero (con región compatible); on-premise para el plan Empresarial → **decidido: ambas, principalmente gestionado** (ronda 3) |
+| P-D6 | ¿Aceptas que, si no se paga la licencia, el cliente conserve el acceso de sólo lectura a sus datos? | Sí (ver §19.1) → **decidido: sí** (ronda 3) |
 | P-D7 | ¿Sector prioritario en Colombia? (financiero, salud, legal, manufactura, gobierno) | Legal y salud medianas: datos sensibles, menor barrera regulatoria que el sector financiero |
 
 ## Preguntas originales
