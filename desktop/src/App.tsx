@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { mockService } from './service/mock';
+import { isDesktopApp, realService } from './service/real';
 import type { ActivityEvent, Compartment, DeviceStatus, NexusService } from './service/types';
 import { Shell, VIEWS, type View } from './components/Shell';
 import { Lock } from './screens/Lock';
@@ -9,21 +10,26 @@ import { Recovery } from './screens/Recovery';
 import { Activity } from './screens/Activity';
 import { Device } from './screens/Device';
 
-// En la Fase 2 este objeto se sustituye por el cliente del servicio local en Rust (vía Tauri).
-const service: NexusService = mockService;
+// Dentro de la aplicación de Windows se usa el motor real; en el navegador, la demostración.
+const service: NexusService = isDesktopApp ? realService : mockService;
 
 const viewFromHash = (): View => {
   const h = window.location.hash.slice(1);
   return VIEWS.some((v) => v.id === h) ? (h as View) : 'inicio';
 };
 
+const PENDING_DEVICE: DeviceStatus = {
+  equipo: '…', windows: 'Comprobando…', ultimaSincronizacion: '—', modoSinConexionHasta: null, checks: [],
+};
+
 export function App() {
   const [session, setSession] = useState<{ usuario: string; organizacion: string } | null>(null);
   const [view, setView] = useState<View>(viewFromHash);
-  const [device, setDevice] = useState<DeviceStatus | null>(null);
-  const [compartments, setCompartments] = useState<Compartment[]>([]);
+  const [device, setDevice] = useState<DeviceStatus>(PENDING_DEVICE);
+  const [compartments, setCompartments] = useState<Compartment[] | null>(null);
   const [activity, setActivity] = useState<ActivityEvent[]>([]);
-  const [recoveryPrompt, setRecoveryPrompt] = useState<string | undefined>();
+  const [error, setError] = useState<string | null>(null);
+  const [restoreFrom, setRestoreFrom] = useState<Compartment | undefined>();
 
   useEffect(() => {
     const onHash = () => setView(viewFromHash());
@@ -31,14 +37,18 @@ export function App() {
     return () => window.removeEventListener('hashchange', onHash);
   }, []);
 
+  const reload = useCallback(async () => {
+    const [c, a] = await Promise.all([service.listCompartments(), service.recentActivity()]);
+    setCompartments(c);
+    setActivity(a);
+  }, []);
+
   useEffect(() => {
     if (!session) return;
-    void Promise.all([service.deviceStatus(), service.listCompartments(), service.recentActivity()]).then(([d, c, a]) => {
-      setDevice(d);
-      setCompartments(c);
-      setActivity(a);
-    });
-  }, [session]);
+    reload().catch((e: unknown) => setError(e instanceof Error ? e.message : String(e)));
+    // El diagnóstico del equipo puede tardar unos segundos (PowerShell): no bloquea la interfaz.
+    service.deviceStatus().then(setDevice).catch(() => setDevice({ ...PENDING_DEVICE, windows: 'No se pudo comprobar' }));
+  }, [session, reload]);
 
   const navigate = useCallback((v: View) => {
     setView(v);
@@ -46,12 +56,19 @@ export function App() {
   }, []);
 
   if (!session) {
-    return <Lock onUnlock={async () => setSession(await service.unlockWithWindowsHello())} />;
+    return <Lock modo={service.modo} onUnlock={async () => setSession(await service.unlockWithWindowsHello())} />;
   }
 
+  const lock = () => {
+    void service.lock();
+    setSession(null);
+    setCompartments(null);
+  };
+
   return (
-    <Shell view={view} onNavigate={navigate} usuario={session.usuario} organizacion={session.organizacion} onLock={() => setSession(null)}>
-      {!device ? (
+    <Shell modo={service.modo} view={view} onNavigate={navigate} usuario={session.usuario} organizacion={session.organizacion} onLock={lock}>
+      {error && <p role="alert" style={{ color: '#fca5a5' }}>{error}</p>}
+      {!compartments ? (
         <p role="status">Cargando…</p>
       ) : (
         <>
@@ -62,14 +79,22 @@ export function App() {
             <Folders
               service={service}
               compartments={compartments}
-              onCreate={(c) => setCompartments((cs) => [c, ...cs])}
+              onChanged={reload}
               onRestore={(c) => {
-                setRecoveryPrompt(`Recupera los archivos de «${c.nombre}» como estaban ayer a las 6 de la tarde`);
+                setRestoreFrom(c);
                 navigate('recuperacion');
               }}
             />
           )}
-          {view === 'recuperacion' && <Recovery key={recoveryPrompt ?? 'nueva'} service={service} initial={recoveryPrompt} />}
+          {view === 'recuperacion' && (
+            <Recovery
+              key={restoreFrom?.id ?? 'nueva'}
+              service={service}
+              compartments={compartments}
+              initialId={restoreFrom?.id}
+              initial={restoreFrom ? `Recupera los archivos de «${restoreFrom.nombre}» como estaban ayer a las 6 de la tarde` : undefined}
+            />
+          )}
           {view === 'actividad' && <Activity service={service} activity={activity} />}
           {view === 'equipo' && <Device device={device} />}
         </>

@@ -13,6 +13,7 @@ export const VIEWS: Array<{ id: View; label: string; icon: IconName }> = [
 ];
 
 type Props = {
+  modo: 'demostracion' | 'real';
   view: View;
   onNavigate: (v: View) => void;
   usuario: string;
@@ -21,7 +22,7 @@ type Props = {
   children: ReactNode;
 };
 
-export function Shell({ view, onNavigate, usuario, organizacion, onLock, children }: Props) {
+export function Shell({ modo, view, onNavigate, usuario, organizacion, onLock, children }: Props) {
   return (
     <div className={styles.app}>
       <aside className={styles.sidebar}>
@@ -64,7 +65,9 @@ export function Shell({ view, onNavigate, usuario, organizacion, onLock, childre
       <div className={styles.main}>
         <p className={styles.proto} role="note">
           <Icon name="info" size={15} />
-          Prototipo de interfaz: datos ficticios, Windows Hello simulado y sin cifrado real.
+          {modo === 'real'
+            ? 'Versión preliminar sin auditar: cifrado real con llaves en el TPM. Úsala sólo con archivos de prueba.'
+            : 'Prototipo de interfaz: datos ficticios, Windows Hello simulado y sin cifrado real.'}
         </p>
         <div className={styles.content}>{children}</div>
       </div>

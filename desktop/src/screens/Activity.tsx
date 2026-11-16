@@ -8,10 +8,17 @@ const ICONS: Record<ActivityEvent['categoria'], IconName> = {
 };
 
 export function Activity({ service, activity }: { service: NexusService; activity: ActivityEvent[] }) {
-  const [state, setState] = useState<'idle' | 'checking' | { checkpoint: number; testigos: string }>('idle');
+  const [state, setState] = useState<'idle' | 'checking' | { resumen: string }>('idle');
+  const [error, setError] = useState<string | null>(null);
   const verify = async () => {
     setState('checking');
-    setState(await service.verifyAuditLog());
+    setError(null);
+    try {
+      setState(await service.verifyAuditLog());
+    } catch (e) {
+      setState('idle');
+      setError(e instanceof Error ? e.message : String(e));
+    }
   };
   return (
     <div className={s.page}>
@@ -27,17 +34,18 @@ export function Activity({ service, activity }: { service: NexusService; activit
         <p>
           {state === 'idle' && 'Comprueba que el registro no ha sido alterado. La verificación se hace en este equipo.'}
           {state === 'checking' && 'Verificando pruebas de consistencia y firmas de los testigos…'}
-          {typeof state === 'object' && (
-            <>Registro íntegro: punto de control <span className="mono">#{state.checkpoint}</span> verificado por {state.testigos} testigos.</>
-          )}
+          {typeof state === 'object' && <>Registro íntegro: {state.resumen}.</>}
         </p>
         {typeof state === 'object'
           ? <span className="chip chip-ok"><Icon name="check" size={14} />Verificado</span>
           : <button type="button" className="btn btn-secondary" onClick={() => void verify()} disabled={state === 'checking'}>Verificar integridad</button>}
       </div>
 
+      {error && <p className={s.error} role="alert">{error}</p>}
+
       <section className={`panel ${s.section}`} aria-label="Eventos">
         <ul className={s.events}>
+          {activity.length === 0 && <li className={s.event}><span /><span className={s.rowText}>Aún no hay actividad.</span></li>}
           {activity.map((a) => (
             <li key={a.id} className={s.event}>
               <span className={s.rowIcon}><Icon name={ICONS[a.categoria]} size={18} /></span>

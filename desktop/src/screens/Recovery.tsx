@@ -3,6 +3,8 @@ import type { NexusService, PendingAction, RestorePlan, RestoreResult } from '..
 import { CipherCore } from '../components/CipherCore/CipherCore';
 import { HelloDialog } from '../components/HelloDialog';
 import { Icon } from '../components/Icon';
+import { RestoreForm } from './RestoreForm';
+import type { Compartment } from '../service/types';
 import s from './screens.module.css';
 
 const STEPS = ['Analizando la petición…', 'Consultando el historial de versiones…', 'Preparando el plan de recuperación…'];
@@ -15,7 +17,16 @@ type Phase =
   | { k: 'restoring'; plan: RestorePlan }
   | { k: 'done'; plan: RestorePlan; result: RestoreResult };
 
-export function Recovery({ service, initial }: { service: NexusService; initial?: string }) {
+type Props = { service: NexusService; initial?: string; compartments: Compartment[]; initialId?: string };
+
+export function Recovery(props: Props) {
+  if (props.service.modo === 'real') {
+    return <RestoreForm service={props.service} compartments={props.compartments} initialId={props.initialId} />;
+  }
+  return <AiRecovery service={props.service} initial={props.initial} />;
+}
+
+function AiRecovery({ service, initial }: { service: NexusService; initial?: string }) {
   const [phase, setPhase] = useState<Phase>({ k: 'idle' });
   const [pregunta, setPregunta] = useState<string | null>(null);
   const [draft, setDraft] = useState(initial ?? '');

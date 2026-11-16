@@ -12,22 +12,22 @@ const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
 const COMPARTMENTS: Compartment[] = [
   {
     id: 'caso-2026-114', tipo: 'caso', nombre: 'Caso 2026-114 · Arrendamiento comercial', cliente: 'Inversiones Ribera (ficticio)',
-    cifrado: 'Extremo a extremo', archivos: 48, tamano: '312 MB', retencion: '10 años', ultimaCopia: 'hace 6 min', estado: 'protegida',
+    archivos: 48, tamano: '312 MB', retencion: '10 años', ultimaCopia: 'hace 6 min', estado: 'protegida',
     miembros: [{ nombre: 'Laura M.', rol: 'Socio' }, { nombre: 'Andrés R.', rol: 'Asociado' }],
   },
   {
     id: 'cliente-andina', tipo: 'cliente', nombre: 'Constructora Andina', cliente: 'Constructora Andina (ficticio)',
-    cifrado: 'Extremo a extremo', archivos: 214, tamano: '1,8 GB', retencion: '10 años', ultimaCopia: 'hace 14 min', estado: 'sincronizando',
+    archivos: 214, tamano: '1,8 GB', retencion: '10 años', ultimaCopia: 'hace 14 min', estado: 'sincronizando',
     miembros: [{ nombre: 'Laura M.', rol: 'Socio' }, { nombre: 'Camila T.', rol: 'Asociado' }, { nombre: 'Jorge P.', rol: 'Asistente' }],
   },
   {
     id: 'caso-2026-131', tipo: 'caso', nombre: 'Caso 2026-131 · Proceso laboral', cliente: 'Transportes del Valle (ficticio)',
-    cifrado: 'Extremo a extremo', archivos: 31, tamano: '96 MB', retencion: '10 años', ultimaCopia: 'hace 1 h', estado: 'protegida',
+    archivos: 31, tamano: '96 MB', retencion: '10 años', ultimaCopia: 'hace 1 h', estado: 'protegida',
     miembros: [{ nombre: 'Andrés R.', rol: 'Asociado' }],
   },
   {
     id: 'cliente-salud-norte', tipo: 'cliente', nombre: 'Clínica Salud Norte', cliente: 'Clínica Salud Norte (ficticio)',
-    cifrado: 'Extremo a extremo', archivos: 77, tamano: '420 MB', retencion: '15 años', ultimaCopia: 'ayer', estado: 'solo-lectura',
+    archivos: 77, tamano: '420 MB', retencion: '15 años', ultimaCopia: 'ayer', estado: 'solo-lectura',
     miembros: [{ nombre: 'Laura M.', rol: 'Socio' }],
   },
 ];
@@ -68,6 +68,27 @@ const DEVICE: DeviceStatus = {
 let seq = 0;
 
 export const mockService: NexusService = {
+  modo: 'demostracion',
+  async lock() {},
+  async createCompartment(nombre, tipo) {
+    await wait(200);
+    const c: Compartment = { id: `nueva-${Date.now()}`, tipo, nombre, cliente: nombre, archivos: 0, tamano: '0 MB',
+      retencion: '10 años', ultimaCopia: 'pendiente', estado: 'protegida', miembros: [{ nombre: 'Laura M.', rol: 'Socio' }] };
+    COMPARTMENTS.unshift(c);
+    return c;
+  },
+  async addFiles(id) {
+    await wait(400);
+    const list = (FILES[id] ??= []);
+    list.unshift({ nombre: `Documento_demo_${list.length + 1}.pdf`, modificado: 'ahora', version: 1, autor: 'Laura M.', tamano: '120 KB' });
+    const c = COMPARTMENTS.find((x) => x.id === id);
+    if (c) c.archivos += 1;
+    return 1;
+  },
+  async restoreAt(_id, _at, etiqueta) {
+    await wait(1600);
+    return { restaurados: 2, carpeta: `Restaurado ${etiqueta}`, recibo: 48214 };
+  },
   async unlockWithWindowsHello() {
     await wait(900);
     return { usuario: 'Laura M.', organizacion: 'Bufete Demo S.A.S.' };
@@ -82,6 +103,8 @@ export const mockService: NexusService = {
   },
   async listFiles(id) {
     await wait(150);
+    const c = COMPARTMENTS.find((x) => x.id === id);
+    if (c && c.archivos === 0) return [];
     return FILES[id] ?? FILES['caso-2026-114']!.map((f) => ({ ...f, nombre: f.nombre.replace('arrendamiento', 'documento') }));
   },
   async recentActivity() {
@@ -90,7 +113,7 @@ export const mockService: NexusService = {
   },
   async verifyAuditLog() {
     await wait(1200);
-    return { checkpoint: 48213, testigos: '3 de 3' };
+    return { resumen: 'punto de control #48213 verificado por 3 de 3 testigos' };
   },
   async proposeRestore(peticion) {
     await wait(300);

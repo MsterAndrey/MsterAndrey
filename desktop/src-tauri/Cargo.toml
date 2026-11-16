@@ -1,0 +1,26 @@
+[package]
+name = "nexus-cube-desktop"
+version = "0.1.0"
+description = "NEXUS CUBE Desktop (versión preliminar)"
+edition = "2024"
+rust-version = "1.85"
+publish = false
+
+[build-dependencies]
+tauri-build = { version = "=2.7.3", features = [] }
+
+[dependencies]
+tauri = { version = "=2.12.4", features = [] }
+tauri-plugin-dialog = "=2.8.3"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+nexus-vault-local = { path = "../../crates/nexus-vault-local" }
+nexus-tpm = { path = "../../crates/nexus-tpm" }
+nexus-diagnostico = { path = "../../crates/nexus-diagnostico" }
+zeroize = "1.8"
+
+[profile.release]
+overflow-checks = true
+
+# Workspace propio: sólo se compila en Windows (necesita WebView2).
+[workspace]

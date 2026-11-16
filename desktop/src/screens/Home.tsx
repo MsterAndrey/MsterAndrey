@@ -13,27 +13,27 @@ type Props = {
 };
 
 export function Home({ usuario, device, compartments, activity, onNavigate }: Props) {
-  const pendientes = device.checks.filter((c) => c.estado !== 'ok').length;
+  const avisos = device.checks.filter((c) => c.estado === 'accion' || c.estado === 'bloqueante');
   const aprobaciones = activity.filter((a) => a.categoria === 'aprobacion').length;
   return (
     <div className={s.page}>
       <header className={s.head}>
         <div>
           <h1>Hola, {usuario.split(' ')[0]}</h1>
-          <p>Tus carpetas están cifradas en este equipo y respaldadas con versiones que no se pueden borrar ni cifrar de nuevo.</p>
+          <p>Tus carpetas están cifradas en este equipo y cada cambio se guarda como una versión nueva que no se puede sobrescribir.</p>
         </div>
       </header>
 
       <section className={s.summary} aria-label="Resumen">
         <div className={`panel ${s.stat}`}>
           <span className={s.k}><Icon name="shield" size={16} />Este equipo</span>
-          <strong>{pendientes === 0 ? 'Protegido' : 'Protegido, 1 aviso'}</strong>
-          <span>{pendientes === 0 ? 'Todo en orden' : 'Actualización de seguridad pendiente'}</span>
+          <strong>{avisos.length === 0 ? 'Protegido' : `${avisos.length} aviso${avisos.length === 1 ? '' : 's'}`}</strong>
+          <span>{avisos[0]?.titulo ?? 'Todo en orden'}</span>
         </div>
         <div className={`panel ${s.stat}`}>
           <span className={s.k}><Icon name="folderLock" size={16} />Carpetas protegidas</span>
-          <strong>{compartments.length} carpetas</strong>
-          <span>Cifradas de extremo a extremo</span>
+          <strong>{compartments.length} carpeta{compartments.length === 1 ? '' : 's'}</strong>
+          <span>Cada una con su propia llave</span>
         </div>
         <div className={`panel ${s.stat}`}>
           <span className={s.k}><Icon name="cloud" size={16} />Copia de seguridad</span>
@@ -41,9 +41,9 @@ export function Home({ usuario, device, compartments, activity, onNavigate }: Pr
           <span>Versiones inmutables</span>
         </div>
         <div className={`panel ${s.stat}`}>
-          <span className={s.k}><Icon name="approve" size={16} />Aprobaciones</span>
-          <strong>{aprobaciones} pendiente{aprobaciones === 1 ? '' : 's'}</strong>
-          <span>Exportación de una carpeta</span>
+          <span className={s.k}><Icon name="approve" size={16} />{aprobaciones > 0 ? 'Aprobaciones' : 'Actividad'}</span>
+          <strong>{aprobaciones > 0 ? `${aprobaciones} pendiente${aprobaciones === 1 ? '' : 's'}` : `${activity.length} eventos`}</strong>
+          <span>{aprobaciones > 0 ? 'Exportación de una carpeta' : 'Registro verificable'}</span>
         </div>
       </section>
 

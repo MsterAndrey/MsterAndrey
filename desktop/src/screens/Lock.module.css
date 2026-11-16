@@ -15,3 +15,4 @@
 .meta { display: grid; gap: 8px; width: 100%; padding-top: 18px; border-top: 1px solid var(--line); font-size: 13px; }
 .meta div { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 .meta dt { color: var(--text-3); }
+.error { color: #fca5a5; font-size: 13px; }

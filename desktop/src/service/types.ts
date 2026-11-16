@@ -27,20 +27,22 @@ export interface Compartment {
   id: string;
   tipo: 'cliente' | 'caso';
   nombre: string;
-  cliente: string;
-  cifrado: 'Extremo a extremo';
-  miembros: Member[];
   archivos: number;
-  tamano: string;
-  retencion: string;
-  ultimaCopia: string;
   estado: 'protegida' | 'sincronizando' | 'solo-lectura';
+  // Campos que sólo existen con servidor de organización (aún no en la versión local):
+  cliente?: string;
+  miembros?: Member[];
+  tamano?: string;
+  retencion?: string;
+  ultimaCopia?: string;
 }
 
 export interface FileVersion {
   nombre: string;
   modificado: string;
   version: number;
+  /** Número de versiones guardadas. */
+  versiones?: number;
   autor: string;
   tamano: string;
 }
@@ -75,17 +77,30 @@ export interface PendingAction {
 export interface RestoreResult {
   restaurados: number;
   carpeta: string;
-  recibo: number;
+  recibo?: number;
+  /** Ruta de la carpeta nueva con lo recuperado (versión real). */
+  ubicacion?: string;
+  noPresentes?: number;
 }
 
 export interface NexusService {
+  /** 'demostracion': datos ficticios. 'real': cifrado real con el motor local y el TPM. */
+  readonly modo: 'demostracion' | 'real';
   unlockWithWindowsHello(): Promise<{ usuario: string; organizacion: string }>;
+  lock(): Promise<void>;
   deviceStatus(): Promise<DeviceStatus>;
   listCompartments(): Promise<Compartment[]>;
+  createCompartment(nombre: string, tipo: Compartment['tipo']): Promise<Compartment>;
+  /** Abre el selector de archivos y los cifra en la carpeta. Devuelve cuántos se añadieron. */
+  addFiles(compartmentId: string): Promise<number>;
   listFiles(compartmentId: string): Promise<FileVersion[]>;
   recentActivity(): Promise<ActivityEvent[]>;
-  verifyAuditLog(): Promise<{ checkpoint: number; testigos: string }>;
-  /** Única operación disponible para CIPHER AI. No modifica nada. */
+  verifyAuditLog(): Promise<{ resumen: string }>;
+  /** Restaura una carpeta tal como estaba en `at`, en una carpeta nueva. Pide Windows Hello en el servicio. */
+  restoreAt(compartmentId: string, at: Date, etiqueta: string): Promise<RestoreResult>;
+  /** Abre en el Explorador la carpeta con lo recuperado (sólo versión real). */
+  reveal?(ubicacion: string): Promise<void>;
+  /** Única operación disponible para CIPHER AI (sólo en la demostración por ahora). No modifica nada. */
   proposeRestore(peticion: string): Promise<RestorePlan>;
   prepareRestore(plan: RestorePlan): Promise<PendingAction>;
   confirmWithWindowsHello(action: PendingAction): Promise<RestoreResult>;

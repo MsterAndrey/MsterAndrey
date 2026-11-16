@@ -77,6 +77,8 @@ pub struct CompartmentSummary {
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct FileSummary {
     pub name: String,
+    /// Identificador del objeto (el que aparece en el registro de actividad).
+    pub object: Id,
     pub versions: Vec<VersionInfo>,
 }
 
@@ -419,6 +421,7 @@ impl<K: KeyStore> Vault<K> {
             .into_iter()
             .map(|(name, e)| FileSummary {
                 name,
+                object: e.object,
                 versions: e.versions,
             })
             .collect())

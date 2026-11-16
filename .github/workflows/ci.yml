@@ -82,3 +82,24 @@ jobs:
             informe-runner.json
             informe-runner.html
           retention-days: 30
+
+  desktop-app:
+    name: Aplicación de Windows (Tauri)
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - uses: dtolnay/rust-toolchain@39008827e6b4319a349e9a42dfc90579dd25f1ca # stable
+      - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+        with:
+          node-version: 22
+      - run: npm ci --ignore-scripts
+        working-directory: desktop
+      - run: npx tauri build --no-bundle -- --locked
+        working-directory: desktop
+      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: nexus-cube-desktop-windows
+          path: desktop/src-tauri/target/release/nexus-cube-desktop.exe
+          retention-days: 30

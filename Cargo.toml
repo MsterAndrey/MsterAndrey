@@ -1,6 +1,8 @@
 [workspace]
 resolver = "3"
 members = ["crates/*"]
+# La aplicación de escritorio sólo se compila en Windows (CI); tiene su propio workspace.
+exclude = ["desktop/src-tauri"]
 
 [workspace.package]
 edition = "2024"
