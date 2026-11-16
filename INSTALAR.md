@@ -60,7 +60,28 @@ Envíame una captura del informe o el texto de la ventana: sería la **primera p
 
 ---
 
-## 4. (Opcional) Ejecutar las pruebas del código en Rust
+## 4. Probar la aplicación de escritorio NEXUS CUBE (versión preliminar)
+
+> **Sólo con archivos de prueba.** Es una versión sin auditar. No uses documentos de clientes.
+
+**Requisitos:** Windows 11, TPM 2.0 activo y Windows Hello configurado (huella, rostro o al menos un PIN, en Configuración › Cuentas › Opciones de inicio de sesión).
+
+1. En **Actions**, abre la ejecución más reciente de **CI** con marca verde ✔.
+2. En **Artifacts**, descarga **nexus-cube-desktop-windows** y descomprímelo.
+3. Haz doble clic en `nexus-cube-desktop.exe` (no necesita instalación). Si aparece «Windows protegió su PC»: **Más información → Ejecutar de todas formas**; ocurre porque aún no está firmado.
+4. Pulsa **Desbloquear con Windows Hello** y confirma con tu huella, rostro o PIN.
+5. Prueba: **Carpetas protegidas → Nueva carpeta**, luego **Añadir archivos** con archivos de prueba. Después, en **Recuperación**, elige la carpeta y un momento, y confirma con Windows Hello.
+
+Dónde queda cada cosa:
+- Los datos cifrados y las llaves (protegidas por el TPM): `%LOCALAPPDATA%\co.com.nexuscube.desktop\`
+- Lo recuperado: `Documentos\NEXUS CUBE - Restaurado\`
+- Los archivos originales que añades **no se borran**.
+
+Si aparece un error, cópialo tal cual y envíamelo.
+
+---
+
+## 5. (Opcional) Ejecutar las pruebas del código en Rust
 
 1. Instala Rust desde https://rustup.rs. En Windows también pedirá instalar «Visual Studio Build Tools», con la opción «Desarrollo de escritorio con C++».
 2. En PowerShell:
