@@ -12,3 +12,6 @@ Todos los ADR actuales están **Propuestos**: requieren aprobación del fundador
 | [0005](ADR-0005-biometria-solo-local.md) | Biometría sólo local | Propuesto |
 | [0006](ADR-0006-auditoria-log-transparencia.md) | Auditoría como log de transparencia con testigos | Propuesto |
 | [0007](ADR-0007-sin-clave-maestra-ni-admin-universal.md) | Sin clave maestra ni administrador universal | Propuesto |
+| [0008](ADR-0008-recuperacion-asistida-por-ia.md) | Recuperación de información asistida por IA (conflicto documentado) | **En revisión** |
+| [0009](ADR-0009-local-first-aplicacion-escritorio.md) | Local-first: aplicación instalada en el computador | Propuesto |
+| [0010](ADR-0010-web-independiente-distribucion-controlada.md) | Web independiente y distribución controlada | Propuesto |

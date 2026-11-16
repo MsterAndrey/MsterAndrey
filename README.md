@@ -38,6 +38,10 @@ NEXUS CUBE es una propuesta de **infraestructura de seguridad empresarial**: ide
 | 14 | [Hoja de ruta y estimación](docs/14-hoja-de-ruta.md) | Fases, complejidad, recursos, dependencias |
 | 15 | [Plan de pruebas](docs/15-plan-pruebas.md) | Tipos de prueba y criterios objetivos de aprobación/rechazo |
 | 16 | [Preguntas para el fundador](docs/16-preguntas-fundador.md) | Decisiones que bloquean el avance |
+| 17 | [NEXUS CUBE Desktop](docs/17-aplicacion-escritorio.md) | Aplicación instalada local-first, capas de cifrado, claves en TPM |
+| 18 | [Web y distribución segura](docs/18-distribucion-segura.md) | Web independiente; proceso estricto de solicitud y descarga |
+| 19 | [Modelos de pago](docs/19-modelo-negocio.md) | Planes, complementos, canales, facturación (hipótesis) |
+| 20 | [Marco normativo Colombia](docs/20-marco-colombia.md) | Ley 1581, SIC, SFC, delitos informáticos (requiere abogado) |
 | — | [ADR](docs/adr/) | Registros de decisiones de arquitectura |
 
 ## Reglas innegociables

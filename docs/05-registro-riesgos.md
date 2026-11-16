@@ -24,6 +24,12 @@
 | R-18 | Seguridad | Recuperación de cuenta como vector de toma de control | 4 | 5 | Recuperación con periodo de espera, notificación a todos los dispositivos y aprobación de custodio | ID | Tickets de soporte que saltan el flujo |
 | R-19 | Seguridad | Pérdida irreversible de datos por pérdida de shares de recuperación del cliente | 2 | 5 | Ceremonia guiada, verificación periódica de shares ("prueba de custodia"), recomendaciones de distribución | VAULT | Shares no verificados en 12 meses |
 | R-20 | Técnico | Dependencia de proveedor LLM externo (privacidad, disponibilidad, cambios de modelo) | 4 | 3 | Abstracción de proveedor; modelo autohospedado para tenants críticos; evaluación de regresión por versión de modelo | IA | Cambio de modelo sin re-evaluación |
+| R-21 | Técnico | Pérdida de datos de clientes por fallos de la app de escritorio al cifrar | 3 | 5 | Escritura atómica, copias versionadas, pruebas de recuperación, despliegue progresivo | Desktop | Tickets de archivos corruptos |
+| R-22 | Seguridad | Instaladores falsos o correos de phishing que suplantan a NEXUS | 4 | 4 | Proceso de [18](18-distribucion-segura.md), DMARC en modo reject, formación del cliente | Seguridad | Reportes de suplantación |
+| R-23 | Seguridad | IA con acceso a claves de usuarios (propuesta original de Q8) | 5 | 5 | ADR-0008: la IA no toca las claves | Fundador + Seguridad | ADR-0008 aprobado sin la alternativa |
+| R-24 | Comercial | Proceso de distribución estricto ralentiza las ventas | 4 | 3 | Medir el tiempo de alta; automatizar la verificación sin relajar controles | Comercial | Alta > 30 días |
+| R-25 | Regulatorio | Transferencia internacional de datos desde Colombia (servidores, proveedor de IA) | 3 | 4 | Elección de región, contratos, on-premise | Legal | Cliente sectorial con restricciones |
+| R-26 | Reputacional | Marketing con la cifra "99 %" sin evidencia | 3 | 5 | Revisión de toda afirmación pública por seguridad | Fundador | — |
 
 ## Riesgos aceptados explícitamente (propuesta, requiere decisión del fundador)
 

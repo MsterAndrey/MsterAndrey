@@ -1,5 +1,31 @@
 # 16. Preguntas técnicas que requieren decisión del fundador
 
+## Respuestas recibidas — ronda 1
+
+| # | Respuesta del fundador | Cómo se incorporó |
+|---|---|---|
+| Q1 | Empresas | Segmento empresarial; planes en [19](19-modelo-negocio.md). Pendiente acotar el tamaño de las primeras empresas (ver P-D3) |
+| Q2 | Colombia y después a nivel mundial | Marco normativo en [20](20-marco-colombia.md); expansión en §20.3 |
+| Q4 | Complementa, pero si es posible que sustituya | Fase 2–3: integrar (IdP, EDR). Sustitución progresiva por módulo cuando haya evidencia de calidad comparable |
+| Q8 | Sí, recuperación mediante la IA con las llaves de la persona | **Conflicto con las reglas 4 y 6.** Alternativa propuesta: la IA guía y la app usa la llave tras confirmación biométrica; el operador sólo guarda un fragmento opcional. Ver [ADR-0008](adr/ADR-0008-recuperacion-asistida-por-ia.md). **Requiere confirmación** |
+| — | El sistema se instala en el computador | [ADR-0009](adr/ADR-0009-local-first-aplicacion-escritorio.md), [17](17-aplicacion-escritorio.md) |
+| — | Web sólo de presentación, sin conexión, descarga por correo con pasos estrictos | [ADR-0010](adr/ADR-0010-web-independiente-distribucion-controlada.md), [18](18-distribucion-segura.md) |
+| — | Modelos de pago mundiales para empresas | [19](19-modelo-negocio.md) |
+
+## Nuevas preguntas derivadas (ronda 2)
+
+| # | Pregunta | Recomendación |
+|---|---|---|
+| P-D1 | ¿Se admiten equipos sin TPM 2.0? | No para datos sensibles; modo degradado señalado para el resto |
+| P-D2 | ¿Aceptas la alternativa del ADR-0008 (la IA guía, pero no usa las claves)? | Sí |
+| P-D3 | ¿Tamaño de las primeras empresas en Colombia? (10–100, 100–1 000, 1 000+) | Medianas (100–1 000): pueden pagar y tienen procesos, sin ciclos de venta de un año |
+| P-D4 | ¿Sistema operativo inicial? | Windows 10/11 |
+| P-D5 | ¿NEXUS Server gestionado por NEXUS, on-premise, o ambos desde el inicio? | Gestionado primero (con región compatible); on-premise para el plan Empresarial |
+| P-D6 | ¿Aceptas que, si no se paga la licencia, el cliente conserve el acceso de sólo lectura a sus datos? | Sí (ver §19.1) |
+| P-D7 | ¿Sector prioritario en Colombia? (financiero, salud, legal, manufactura, gobierno) | Legal y salud medianas: datos sensibles, menor barrera regulatoria que el sector financiero |
+
+## Preguntas originales
+
 Ordenadas por impacto en la arquitectura. Cada una indica la recomendación del equipo y qué bloquea.
 
 ## Producto y mercado
