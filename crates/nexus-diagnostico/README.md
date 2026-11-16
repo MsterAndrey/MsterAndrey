@@ -14,7 +14,7 @@ NEXUS CUBE ([ADR-0012](../../docs/adr/ADR-0012-tpm-2-obligatorio.md): TPM 2.0 ob
 | Comprobación | Bloquea | Requiere acción | OK |
 |---|---|---|---|
 | TPM | Sin TPM, o TPM 1.2 | TPM 2.0 desactivado | TPM 2.0 activo y listo |
-| Windows | Anterior a Windows 10 | Windows 10 (sin soporte gratuito desde el 14-oct-2025) | Windows 11 |
+| Windows | Anterior a Windows 10, o Windows Server | Windows 10 (sin soporte gratuito desde el 14-oct-2025) | Windows 11 |
 | Secure Boot | — | Desactivado / BIOS heredada | Activado |
 | BitLocker (unidad del sistema) | — | Sin proteger | Protegida |
 | Actualizaciones | — | Más de 45 días sin actualizar | Al día |

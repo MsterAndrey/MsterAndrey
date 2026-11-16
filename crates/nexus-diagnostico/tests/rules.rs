@@ -89,3 +89,14 @@ fn salida_con_bom_de_powershell_se_acepta() {
     );
     assert!(Facts::from_json(&s).is_ok());
 }
+
+/// Caso real: máquina virtual de GitHub Actions (Windows Server 2025, sin vTPM).
+#[test]
+fn windows_server_y_vm_sin_vtpm() {
+    let f = load("github_runner_server");
+    assert_eq!(status(&f, "windows"), Status::Bloqueante);
+    let tpm = evaluate(&f).1.into_iter().find(|c| c.id == "tpm").unwrap();
+    assert_eq!(tpm.estado, Status::Bloqueante);
+    assert!(tpm.recomendacion.unwrap().contains("vTPM"));
+    assert_eq!(evaluate(&f).0, Verdict::NoApto);
+}

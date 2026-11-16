@@ -98,9 +98,11 @@ fn tpm(f: &Facts) -> Check {
             T,
             Status::Bloqueante,
             format!("No se detectó un TPM habilitado{vm}"),
-            Some(
-                "Si el procesador tiene fTPM (Intel PTT / AMD fTPM), activarlo en la BIOS/UEFI y volver a ejecutar. Si no lo tiene, el equipo debe reemplazarse",
-            ),
+            Some(if f.is_virtual() {
+                "Activar el TPM virtual (vTPM) de la máquina en el hipervisor (Hyper-V, VMware, Azure…) y volver a ejecutar"
+            } else {
+                "Si el procesador tiene fTPM (Intel PTT / AMD fTPM), activarlo en la BIOS/UEFI y volver a ejecutar. Si no lo tiene, el equipo debe reemplazarse"
+            }),
         ),
         (Some(true), Some(false)) => check(
             "tpm",
@@ -149,6 +151,16 @@ fn tpm(f: &Facts) -> Check {
 fn windows(f: &Facts) -> Check {
     const T: &str = "Windows";
     let name = f.os_caption.clone().unwrap_or_else(|| "Windows".into());
+    // Windows Server comparte números de compilación con Windows 11, pero no es plataforma de NEXUS CUBE Desktop.
+    if name.to_lowercase().contains("server") {
+        return check(
+            "windows",
+            T,
+            Status::Bloqueante,
+            format!("{name}: Windows Server no es una plataforma soportada por NEXUS CUBE Desktop"),
+            Some("Instalar NEXUS CUBE Desktop en equipos con Windows 11"),
+        );
+    }
     match f.os_build {
         None => check(
             "windows",

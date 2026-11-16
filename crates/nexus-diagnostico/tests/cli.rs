@@ -18,6 +18,7 @@ fn ejemplo_firma_de_abogados_y_consolidado() {
         "tpm12",
         "no_admin",
         "vm_vtpm",
+        "github_runner_server",
     ] {
         let out = bin()
             .args([
@@ -41,9 +42,9 @@ fn ejemplo_firma_de_abogados_y_consolidado() {
         .unwrap();
     let text = String::from_utf8_lossy(&out.stdout);
     assert!(out.status.success());
-    assert!(text.contains("Equipos analizados: 6"), "{text}");
+    assert!(text.contains("Equipos analizados: 7"), "{text}");
     let csv = std::fs::read_to_string(dir.join("nexus-diagnostico-consolidado.csv")).unwrap();
-    assert_eq!(csv.lines().count(), 7);
+    assert_eq!(csv.lines().count(), 8);
     println!("{text}\n{csv}");
     std::fs::remove_dir_all(&dir).ok();
 }
