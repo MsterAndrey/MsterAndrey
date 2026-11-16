@@ -25,7 +25,31 @@
     }
   },
   "bundle": {
-    "active": false,
-    "icon": ["icons/icon.ico", "icons/icon.png"]
+    "active": true,
+    "targets": [
+      "nsis"
+    ],
+    "publisher": "NEXUS CUBE",
+    "copyright": "© 2026 NEXUS CUBE",
+    "category": "Utility",
+    "shortDescription": "NEXUS CUBE Desktop (versión preliminar)",
+    "longDescription": "Carpetas cifradas por cliente o caso, con llaves protegidas por el TPM 2.0 y confirmación con Windows Hello. Versión preliminar: usar sólo con archivos de prueba.",
+    "icon": [
+      "icons/icon.ico",
+      "icons/icon.png"
+    ],
+    "windows": {
+      "webviewInstallMode": {
+        "type": "embedBootstrapper"
+      },
+      "nsis": {
+        "installMode": "perMachine",
+        "languages": [
+          "Spanish"
+        ],
+        "displayLanguageSelector": false,
+        "installerIcon": "icons/icon.ico"
+      }
+    }
   }
 }
