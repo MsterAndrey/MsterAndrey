@@ -1,0 +1,23 @@
+.scrim {
+  position: fixed; inset: 0; z-index: 100; display: grid; place-items: center; padding: 16px;
+  background: rgba(2, 6, 23, 0.72); backdrop-filter: blur(4px);
+}
+.dialog {
+  width: min(440px, 100%); display: grid; gap: 18px; padding: 24px;
+  background: #111a2e; border: 1px solid var(--line-strong); border-radius: 16px;
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.8);
+}
+.sim { font-size: 11px; color: #fbbf24; border: 1px dashed rgba(245, 158, 11, 0.45); border-radius: 8px; padding: 6px 10px; }
+.head { display: flex; align-items: center; gap: 14px; }
+.head h2 { font-size: 18px; font-weight: 600; }
+.badge { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; background: rgba(56, 189, 248, 0.12); color: var(--nc-electric); }
+.sub { color: var(--text-2); font-size: 13px; }
+.what { display: grid; gap: 6px; padding: 14px; border-radius: 12px; background: rgba(148, 163, 184, 0.06); }
+.what p { font-size: 14px; }
+.hash { font-size: 11px; color: var(--text-3); }
+.sensor { display: grid; justify-items: center; gap: 10px; padding: 8px 0; color: var(--nc-electric); text-align: center; font-size: 13px; }
+.sensor span { color: var(--text-2); }
+.sensor[data-state='verificando'] svg { animation: pulse 1s ease-in-out infinite; }
+.actions { display: flex; justify-content: flex-end; gap: 10px; }
+@keyframes pulse { 50% { opacity: 0.35; } }
+@media (prefers-reduced-motion: reduce) { .sensor[data-state='verificando'] svg { animation: none; } }

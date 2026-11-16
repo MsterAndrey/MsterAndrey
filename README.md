@@ -52,6 +52,7 @@ NEXUS CUBE es una propuesta de **infraestructura de seguridad empresarial**: ide
 |---|---|
 | [`crates/nexus-envelope`](crates/nexus-envelope/) | Prototipo Fase 1: cifrado de objetos con envoltura de claves (Rust). **No usar con datos reales** |
 | [`crates/nexus-diagnostico`](crates/nexus-diagnostico/) | Herramienta de diagnóstico de equipos Windows (TPM 2.0, Windows 11, Secure Boot, BitLocker) para antes de la venta |
+| [`desktop/`](desktop/) | Prototipo navegable de la aplicación de escritorio (datos ficticios, sin cifrado real) |
 | [`web/`](web/) | Sitio de presentación y demostración de CIPHER AI |
 | [`.github/workflows/ci.yml`](.github/workflows/ci.yml) | Pruebas automáticas en cada cambio |
 
