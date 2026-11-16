@@ -98,3 +98,29 @@ Dependencias externas críticas: proveedor de HSM/KMS, proveedor cloud, bibliote
 ## 14.5 Costes a estimar (no estimados aquí)
 
 No se dan cifras económicas sin datos del mercado objetivo, país y estructura salarial. Partidas a presupuestar: equipo, HSM/KMS, infraestructura cloud, auditorías y pentests, certificaciones (SOC 2, ISO 27001, FIPS 140-3, CC), asesoría legal multi-jurisdicción, seguros de ciberriesgo, y en Fase 4 NRE de hardware.
+
+## 14.6 Plan para un fundador independiente (situación actual)
+
+Situación declarada por el fundador: trabaja solo, sin equipo ni presupuesto por ahora. Las estimaciones de §14.3 suponen un equipo; este plan describe lo que se puede avanzar mientras tanto **sin bajar el listón de seguridad**.
+
+**Lo que se puede hacer solo (con asistencia de IA y herramientas gratuitas)**
+| Trabajo | Estado |
+|---|---|
+| Arquitectura, modelo de amenazas, decisiones (ADR) | Hecho, versión inicial |
+| Sitio de presentación e identidad visual | Hecho (falta registrar el dominio) |
+| Prototipo `nexus-envelope` con pruebas, vectores oficiales y fuzzing | Hecho (falta la revisión externa) |
+| Integración continua gratuita (GitHub Actions) | Configurada |
+| Siguientes prototipos pequeños: herramienta de diagnóstico TPM, parser de CIPHER, verificador de TRUST | Por hacer |
+
+**Lo que NO se debe hacer solo**
+- Usar el sistema con datos reales de clientes antes de una revisión criptográfica y un pentest externos.
+- Venderlo como "seguro" sin esa evidencia (reglas 13 y 14).
+- Diseñar hardware propio.
+
+**Opciones de bajo coste para conseguir revisión externa** [VERIFICAR condiciones vigentes]
+1. **Publicar como código abierto** la especificación, `nexus-envelope` y el futuro verificador de TRUST. Permite revisión gratuita de la comunidad y genera confianza. Antes, decidir la licencia (Q16).
+2. **Convocatorias de financiamiento** para innovación y ciberseguridad: en Colombia, entidades como iNNpulsa, MinCiencias o los programas del MinTIC; a nivel internacional, fondos para software de seguridad de código abierto. Este repositorio ya sirve como dossier técnico.
+3. **Universidades colombianas** con grupos de investigación en criptografía o seguridad: convenios de revisión o proyectos de grado.
+4. **Auditoría acotada:** contratar sólo la revisión de `nexus-envelope` y del formato NCOBJ (alcance pequeño = coste menor), en lugar de todo el sistema.
+
+**Primer hito realista:** con el prototipo revisado externamente, la herramienta de diagnóstico TPM y una demo funcional de cifrado y recuperación en Windows, buscar 1–2 empresas piloto (legal o salud) **con datos ficticios** y un primer socio técnico o cofundador.

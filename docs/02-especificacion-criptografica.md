@@ -70,8 +70,11 @@ NCOBJ v1
     nonce          : 12|24 bytes
   ciphertext       : bytes
   tag              : 16 bytes
-AAD = canonical(header sin wrapped_dek) || "NCOBJ-v1"
+AAD = canonical(magic, format_version, suite_id, tenant_id, compartment_id,
+                object_id, object_version, nonce) || "NCOBJ-v1"
 ```
+
+> **Corrección (2026-11-16, hallazgo H-2 del prototipo):** `kek_id` y `wrapped_dek` quedan **fuera** del AAD. Si `kek_id` estuviera dentro, rotar la KEK obligaría a volver a cifrar los datos (contradice P8). La codificación binaria exacta está en `crates/nexus-envelope/src/format.rs`.
 
 El AAD vincula el texto cifrado a su tenant, compartimento, objeto y versión: un atacante con acceso de escritura al almacenamiento no puede mover un blob cifrado de un tenant a otro ni hacer *rollback* de versión sin detección.
 

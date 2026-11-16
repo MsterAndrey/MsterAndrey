@@ -11,11 +11,11 @@ NEXUS CUBE es una propuesta de **infraestructura de seguridad empresarial**: ide
 | 1 — Investigación | **Borrador inicial** (este repositorio) |
 | 2 — Arquitectura | **Borrador inicial** (este repositorio) |
 | 3 — Revisión adversarial | **Parcial**: modelo de amenazas y registro de riesgos iniciales; falta revisión externa |
-| 4 — Prototipo | No iniciado |
-| 5 — Validación | No iniciado |
+| 4 — Prototipo | **En curso**: [`nexus-envelope`](crates/nexus-envelope/) (cifrado de objetos de VAULT) implementado |
+| 5 — Validación | **Parcial**: pruebas internas y fuzzing ([resultados](docs/resultados/2026-11-16-nexus-envelope.md)); falta revisión criptográfica externa |
 | 6 — Integración | No iniciado |
 
-**No existe todavía código del producto, ni pruebas ejecutadas, ni auditorías, ni certificaciones.** Todo lo descrito es diseño propuesto y debe ser revisado por especialistas independientes antes de implementarse. Cualquier afirmación de este repositorio que suene a capacidad existente es un error y debe reportarse.
+**El único código del producto es el prototipo `nexus-envelope`, que no está auditado. No hay auditorías externas ni certificaciones.** Todo lo descrito es diseño propuesto y debe ser revisado por especialistas independientes antes de implementarse. Cualquier afirmación de este repositorio que suene a capacidad existente es un error y debe reportarse.
 
 ## Índice de documentación
 
@@ -43,6 +43,14 @@ NEXUS CUBE es una propuesta de **infraestructura de seguridad empresarial**: ide
 | 19 | [Modelos de pago](docs/19-modelo-negocio.md) | Planes, complementos, canales, facturación (hipótesis) |
 | 20 | [Marco normativo Colombia](docs/20-marco-colombia.md) | Ley 1581, SIC, SFC, delitos informáticos (requiere abogado) |
 | — | [ADR](docs/adr/) | Registros de decisiones de arquitectura |
+
+## Código
+
+| Ruta | Contenido |
+|---|---|
+| [`crates/nexus-envelope`](crates/nexus-envelope/) | Prototipo Fase 1: cifrado de objetos con envoltura de claves (Rust). **No usar con datos reales** |
+| [`web/`](web/) | Sitio de presentación y demostración de CIPHER AI |
+| [`.github/workflows/ci.yml`](.github/workflows/ci.yml) | Pruebas automáticas en cada cambio |
 
 ## Sitio web
 

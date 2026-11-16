@@ -1,0 +1,13 @@
+[workspace]
+resolver = "3"
+members = ["crates/*"]
+
+[workspace.package]
+edition = "2024"
+rust-version = "1.85"
+publish = false
+
+# En código criptográfico, un desbordamiento aritmético debe detener la ejecución,
+# no producir silenciosamente un valor incorrecto.
+[profile.release]
+overflow-checks = true

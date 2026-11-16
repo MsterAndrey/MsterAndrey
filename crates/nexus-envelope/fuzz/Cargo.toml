@@ -1,0 +1,30 @@
+[package]
+name = "nexus-envelope-fuzz"
+version = "0.0.0"
+publish = false
+edition = "2024"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = { version = "0.4", features = ["arbitrary-derive"] }
+nexus-envelope = { path = ".." }
+
+# Workspace propio: los objetivos de fuzzing requieren nightly y no forman parte del build normal.
+[workspace]
+members = ["."]
+
+[[bin]]
+name = "decode_open"
+path = "fuzz_targets/decode_open.rs"
+test = false
+doc = false
+bench = false
+
+[[bin]]
+name = "seal_open"
+path = "fuzz_targets/seal_open.rs"
+test = false
+doc = false
+bench = false

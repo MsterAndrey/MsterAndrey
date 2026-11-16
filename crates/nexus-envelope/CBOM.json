@@ -1,0 +1,25 @@
+{
+  "description": "Inventario criptográfico (CBOM) de nexus-envelope 0.1.0. Ver docs/02-especificacion-criptografica.md §2.5.",
+  "suites": [
+    {
+      "id": "NC-AEAD-1",
+      "code": "0x0001",
+      "purpose": "Cifrado de datos de objetos",
+      "algorithm": "AES-256-GCM",
+      "nonce_bits": 96,
+      "tag_bits": 128,
+      "key_lifetime": "Una DEK aleatoria por objeto y versión (un único mensaje por clave)",
+      "implementation": "aes-gcm 0.10.3 (RustCrypto)",
+      "standard": "NIST FIPS 197, SP 800-38D"
+    },
+    {
+      "id": "NC-WRAP-1",
+      "purpose": "Envoltura de DEK con la KEK del compartimento",
+      "algorithm": "AES-256-KWP",
+      "implementation": "aes-kw 0.2.1 (RustCrypto), sólo en SoftwareKek (pruebas y desarrollo). Producción: HSM/KMS",
+      "standard": "NIST SP 800-38F, RFC 5649"
+    }
+  ],
+  "randomness": "OsRng (getrandom → getrandom(2) en Linux, BCryptGenRandom en Windows)",
+  "not_implemented": ["NC-AEAD-2", "NC-WRAP-2", "NC-SIG-*", "cifrado por bloques (streaming)"]
+}

@@ -1,0 +1,19 @@
+[package]
+name = "nexus-envelope"
+version = "0.1.0"
+description = "NEXUS VAULT: cifrado de objetos con envoltura de claves (formato NCOBJ v1). Prototipo, sin auditar."
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[dependencies]
+# RustCrypto, versiones fijadas. Implementaciones en Rust puro, sin `unsafe` propio en este crate.
+aes-gcm = { version = "=0.10.3", default-features = false, features = ["aes", "alloc", "getrandom", "zeroize"] }
+aes-kw = { version = "=0.2.1", features = ["alloc"] }
+zeroize = "1.8"
+
+[dev-dependencies]
+proptest = "1.6"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+hex = "0.4"
