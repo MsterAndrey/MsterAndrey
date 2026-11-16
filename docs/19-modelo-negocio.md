@@ -1,6 +1,6 @@
 # 19. Modelos de pago y licenciamiento
 
-> Mercado objetivo (decisión del fundador): **empresas**, empezando en **Colombia** y expandiendo a nivel mundial. Los precios de este documento son **hipótesis de partida** para validar con clientes reales; no son resultado de un estudio de mercado.
+> Mercado objetivo (decisión del fundador): **empresas de 100 a 1 000 empleados** de los sectores **legal y salud**, empezando en **Colombia** y expandiendo después a nivel mundial. El plan **Profesional** es la oferta principal del piloto. Los precios de este documento son **hipótesis de partida** para validar con clientes reales; no son resultado de un estudio de mercado.
 
 ## 19.1 Principios
 

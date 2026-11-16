@@ -1,6 +1,8 @@
 # ADR-0008 — Recuperación de información asistida por IA
 
-**Estado:** En revisión — **conflicto funcionalidad/seguridad documentado** (regla del proyecto: debe aprobarlo el fundador junto con el responsable de seguridad).
+**Estado:** **Aceptado** (ronda 2): el fundador aprueba la alternativa. La IA sólo guía; nunca posee ni usa las claves. Queda pendiente la ratificación del responsable de seguridad cuando se designe (Q21).
+
+> Motivo del fundador: si la IA usara las llaves, un atacante podría manipularla para descargar toda la información.
 
 ## Contexto
 
@@ -59,5 +61,5 @@ En los tres casos la IA puede **guiar** el procedimiento (pasos, verificación, 
 + Un atacante que manipule a la IA, como mucho, consigue que *proponga* una restauración que la persona tiene que confirmar con su biometría.
 − Un paso de confirmación más para el usuario.
 
-## Alternativa solicitada (IA con acceso a las claves) — no recomendada
-Si el fundador decide mantenerla, debe quedar registrado como **riesgo aceptado** con: modelo de amenazas específico, red team enfocado en la IA y prohibición de publicitar que el sistema es seguro frente a la manipulación de la IA hasta que exista evidencia. Recomendación del equipo: **rechazarla**.
+## Alternativa descartada: IA con acceso a las claves
+**Rechazada** por el fundador en la ronda 2. Cualquier funcionalidad futura que dé a la IA acceso a claves, fragmentos de recuperación o datos descifrados fuera de la sesión del usuario requiere un nuevo ADR.

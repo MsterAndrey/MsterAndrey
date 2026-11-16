@@ -4,15 +4,25 @@
 
 | # | Respuesta del fundador | Cómo se incorporó |
 |---|---|---|
-| Q1 | Empresas | Segmento empresarial; planes en [19](19-modelo-negocio.md). Pendiente acotar el tamaño de las primeras empresas (ver P-D3) |
-| Q2 | Colombia y después a nivel mundial | Marco normativo en [20](20-marco-colombia.md); expansión en §20.3 |
+| Q1 | Empresas | Segmento empresarial; planes en [19](19-modelo-negocio.md). Tamaño acotado en la ronda 2: 100–1 000 empleados |
+| Q2 | Colombia y después a nivel mundial | Marco normativo en [20](20-marco-colombia.md); expansión en §20.4 |
 | Q4 | Complementa, pero si es posible que sustituya | Fase 2–3: integrar (IdP, EDR). Sustitución progresiva por módulo cuando haya evidencia de calidad comparable |
-| Q8 | Sí, recuperación mediante la IA con las llaves de la persona | **Conflicto con las reglas 4 y 6.** Alternativa propuesta: la IA guía y la app usa la llave tras confirmación biométrica; el operador sólo guarda un fragmento opcional. Ver [ADR-0008](adr/ADR-0008-recuperacion-asistida-por-ia.md). **Requiere confirmación** |
+| Q8 | Sí, recuperación mediante la IA con las llaves de la persona | **Conflicto con las reglas 4 y 6.** Alternativa propuesta: la IA guía y la app usa la llave tras confirmación biométrica; el operador sólo guarda un fragmento opcional. Ver [ADR-0008](adr/ADR-0008-recuperacion-asistida-por-ia.md). **Confirmado en la ronda 2** |
 | — | El sistema se instala en el computador | [ADR-0009](adr/ADR-0009-local-first-aplicacion-escritorio.md), [17](17-aplicacion-escritorio.md) |
 | — | Web sólo de presentación, sin conexión, descarga por correo con pasos estrictos | [ADR-0010](adr/ADR-0010-web-independiente-distribucion-controlada.md), [18](18-distribucion-segura.md) |
 | — | Modelos de pago mundiales para empresas | [19](19-modelo-negocio.md) |
 
-## Nuevas preguntas derivadas (ronda 2)
+## Respuestas recibidas — ronda 2
+
+| # | Respuesta | Cómo se incorporó |
+|---|---|---|
+| P-D2 | La IA sólo guía; no usa las llaves | [ADR-0008](adr/ADR-0008-recuperacion-asistida-por-ia.md) aceptado; riesgo R-23 mitigado |
+| P-D3 | Empresas de 100 a 1 000 empleados | Plan **Profesional** como oferta principal del piloto ([19](19-modelo-negocio.md)) |
+| P-D7 | Sectores legal y salud | Requisitos sectoriales en [20 §20.3](20-marco-colombia.md#203-sectores-prioritarios-legal-y-salud); pilotos con firmas de abogados e IPS medianas |
+
+Pendientes de la ronda 2: P-D1 (equipos sin TPM), P-D4 (sistema operativo inicial), P-D5 (servidor gestionado u on-premise), P-D6 (sólo lectura si no se paga).
+
+## Preguntas de la ronda 2
 
 | # | Pregunta | Recomendación |
 |---|---|---|

@@ -23,5 +23,24 @@
 3. **Procedimiento de notificación de incidentes** que permita al cliente cumplir sus plazos ante la SIC/SFC: los informes de TRUST y SENTINEL deben exportarse con evidencia verificable.
 4. **Proveedor de IA:** verificar dónde procesa los datos; para clientes sensibles, usar un modelo local o alojado en una región adecuada.
 
-## 20.3 Expansión mundial (posterior)
+## 20.3 Sectores prioritarios: legal y salud
+
+Decisión del fundador (ronda 2). Normas adicionales a confirmar con un abogado **[VERIFICAR]**:
+
+| Sector | Norma / tema | Impacto en el diseño |
+|---|---|---|
+| Salud | **Historia clínica**: Ley 23 de 1981, Resolución 1995 de 1999 (custodia, confidencialidad y conservación) y **Ley 2015 de 2020** (historia clínica electrónica interoperable), con su reglamentación del Ministerio de Salud (p. ej. Resolución 866 de 2021) | Plazos de conservación largos → retención de versiones configurable por años; acceso del paciente y de terceros autorizados; cifrado compatible con la interoperabilidad que exija el ministerio (a validar) |
+| Salud | Datos de salud = **datos sensibles** (Ley 1581) | Consentimiento, minimización y compartimentos E2EE recomendados para historias clínicas; CIPHER AI no procesa historias clínicas salvo configuración explícita del cliente |
+| Salud | Supervisión de la **Superintendencia Nacional de Salud** | Reporte de incidentes y auditorías: los informes de TRUST deben ser exportables |
+| Legal | **Secreto profesional** del abogado (Ley 1123 de 2007, Código Disciplinario del Abogado) | Compartimentos por cliente o por caso, E2EE por defecto en expedientes y prohibición de que el operador o la IA accedan al contenido |
+| Legal | Valor probatorio de documentos electrónicos (Ley 527 de 1999, Código General del Proceso) | Las versiones inmutables y el registro TRUST pueden servir como evidencia de integridad y cadena de custodia (requiere validación jurídica) |
+| Ambos | Clientes extranjeros de las firmas o pacientes internacionales | Transferencias internacionales (art. 26 de la Ley 1581) |
+
+**Implicaciones para el MVP**
+1. Plantillas de compartimentos: "Expediente / caso" (legal) e "Historia clínica" (salud), con E2EE y retención predeterminadas.
+2. Retención de versiones configurable hasta muchos años, con crypto-shredding para la supresión cuando proceda.
+3. Exportación de evidencia (pruebas de inclusión de TRUST) en formatos útiles para auditorías de la Supersalud y para litigios.
+4. Antes de vender a IPS: verificar si el producto se clasifica como sistema de información de historia clínica y qué requisitos de habilitación o interoperabilidad le aplican.
+
+## 20.4 Expansión mundial (posterior)
 Antes de entrar en cada país: equivalente local de protección de datos (GDPR en la UE, LGPD en Brasil, LFPDPPP en México, leyes estatales en EE. UU., incluida la BIPA de Illinois para biometría), controles de exportación de criptografía y certificaciones que exija el mercado (SOC 2, ISO 27001, y FIPS 140-3 o Common Criteria para sector público).

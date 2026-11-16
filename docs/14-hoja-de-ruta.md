@@ -26,7 +26,7 @@
 En paralelo (diseño, no código de producción): especificación completa de CIPHER v0.2 y prototipo del parser.
 
 ### Fase 2 — MVP de piloto cerrado (≈ 6–9 meses)
-> Ajuste tras la ronda 1: el MVP es **NEXUS CUBE Desktop para Windows** + NEXUS Server gestionado (región compatible para Colombia) + portal de distribución. El dashboard web de administración se mantiene sólo para los administradores. Pilotos con 2–5 empresas colombianas.
+> Ajuste tras la ronda 1: el MVP es **NEXUS CUBE Desktop para Windows** + NEXUS Server gestionado (región compatible para Colombia) + portal de distribución. El dashboard web de administración se mantiene sólo para los administradores. Pilotos con 2–5 empresas colombianas de 100 a 1 000 empleados de los sectores **legal y salud** (p. ej. 2–3 firmas de abogados y 1–2 IPS o clínicas medianas).
 - NEXUS ID (passkeys, DPoP, dispositivos, recuperación con periodo de espera).
 - PDP con CIPHER (sólo subconjunto de políticas) + análisis SMT básico.
 - VAULT modo gestionado + versionado + Object Lock + restauración.
